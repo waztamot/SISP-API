@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace SISP\Http\Controllers\Auth;
 
-use App\User;
+use SISP\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use SISP\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller

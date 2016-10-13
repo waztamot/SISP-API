@@ -1,21 +1,32 @@
 <?php
 
-namespace SISP;
+namespace SISP\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Zizaco\Entrust\Traits\EntrustUserTrait; 
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     use Notifiable;
+    use LogsActivity;
+    use EntrustUserTrait;
+
+    public $incrementing = false;
+
+    // protected $table = 'usuarios';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+    protected static $logAttributes = ['cedula', 'nombre', 'estado'];
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'cedula', 'nombre', 'estado',
     ];
 
     /**

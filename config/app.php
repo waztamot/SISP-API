@@ -172,6 +172,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Spatie\Activitylog\ActivitylogServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         //
 
         /*
@@ -236,7 +237,9 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Module' => Nwidart\Modules\Facades\Module::class,
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];

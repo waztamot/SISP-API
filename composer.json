@@ -26,7 +26,8 @@
             "database"
         ],
         "psr-4": {
-            "SISP\\": "app/"
+            "SISP\\": "app/",
+            "Modules\\": "Modules/"
         }
     },
     "autoload-dev": {

@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'SISP',
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,15 +166,20 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Yajra\Oci8\Oci8ServiceProvider::class,
+        // Johnnymn\Sim\Roles\RolesServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Spatie\Activitylog\ActivitylogServiceProvider::class,
+        Nwidart\Modules\LaravelModulesServiceProvider::class,
         //
 
         /*
          * Application Service Providers...
          */
         SISP\Providers\AppServiceProvider::class,
-        SISP\Providers\AuthServiceProvider::class,
         // SISP\Providers\BroadcastServiceProvider::class,
+        SISP\Providers\AuthServiceProvider::class,
         SISP\Providers\EventServiceProvider::class,
         SISP\Providers\RouteServiceProvider::class,
 
@@ -197,7 +202,6 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
-        'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
@@ -226,6 +230,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Package Aliases...
+         */
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
+        'Module' => Nwidart\Modules\Facades\Module::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];

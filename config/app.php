@@ -173,6 +173,7 @@ return [
         Spatie\Activitylog\ActivitylogServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
         //
 
         /*

@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'user' => SISP\Entities\Usurario::class,
+    'user' => SISP\Entities\Usuario::class,
 
     /*
     |--------------------------------------------------------------------------

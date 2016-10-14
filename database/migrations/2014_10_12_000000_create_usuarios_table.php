@@ -18,7 +18,8 @@ class CreateUsuariosTable extends Migration
             $table->string('cedula')->unique();
             $table->string('nombre');
             $table->string('password');
-            $table->boolean('estado')->default(1);
+            $table->boolean('activo')->default(1);
+            $table->rememberToken();
             $table->timestamps();
         });
     }

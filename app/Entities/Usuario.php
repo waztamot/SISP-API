@@ -23,10 +23,10 @@ class Usuario extends Authenticatable
      * @var array
      */
 
-    protected static $logAttributes = ['cedula', 'nombre', 'estado'];
+    protected static $logAttributes = ['cedula', 'nombre', 'active'];
 
     protected $fillable = [
-        'id', 'cedula', 'nombre', 'estado',
+        'id', 'cedula', 'nombre', 'active',
     ];
 
     /**

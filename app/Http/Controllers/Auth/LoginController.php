@@ -2,8 +2,16 @@
 
 namespace SISP\Http\Controllers\Auth;
 
+use Auth;
+use Cache;
+use ErrorException;
+use Illuminate\Http\Request;
+use JWTAuth;
+use SISP\Entities\User;
 use SISP\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
+
 
 class LoginController extends Controller
 {
@@ -18,15 +26,6 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
     /**
      * Create a new controller instance.
      *
@@ -34,6 +33,38 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('jwt.auth', ['except' => 'login']);
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('cedula', 'password');
+
+        try {
+            // verify the credentials and create a token for the user
+            if (!$token = JWTAuth::attempt($credentials)) {
+                // return response()->json(['error' => trans('validation.invalid_user')], 401);
+                return response()->json(['error' => 'Usuario Invalido'], 401);
+            } elseif (!Auth::user()->activo) {
+                // Auth::logout();
+                // return response()->json(['error' => trans('validation.active_user')], 401);
+                return response()->json(['error' => 'Usuario No activo'], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+        // if no errors are encountered we can return a JWT
+        return response()->json(compact('token'), 200);
+    }
+
+    /* No Implementado */
+    public function logout()
+    {
+        /*if (JWTAuth::invalidate(JWTAuth::getToken())) {
+            return response()->json(['success' => true], 200);
+        } 
+
+        return response()->json(['error' => true], 200);*/
     }
 }

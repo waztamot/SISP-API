@@ -1,6 +1,6 @@
 <?php
 
-namespace SISP\Entities;
+namespace Modules\Seguridad\Entities;
 
 // use Illuminate\Database\Eloquent\Model;
 // use Johnnymn\Sim\Roles\Models\Permission;

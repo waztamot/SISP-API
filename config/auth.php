@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => SISP\Entities\Usuario::class,
+            'model' => Modules\Seguridad\Entities\Usuario::class,
         ],
 
         // 'users' => [

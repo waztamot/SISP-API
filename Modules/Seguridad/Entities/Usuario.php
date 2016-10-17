@@ -1,6 +1,6 @@
 <?php
 
-namespace SISP\Entities;
+namespace Modules\Seguridad\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,4 +37,17 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($user) {
+            if (!method_exists(Config::get('auth.providers.users.model'), 'bootSoftDeletes')) {
+                $user->roles()->sync([]);
+            }
+
+            return true;
+        });
+    }
 }

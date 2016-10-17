@@ -40,8 +40,8 @@ return [
     */
 
     'models' => [
-        'role' => SISP\Entities\Role::class,
-        'permission' => SISP\Entities\Permiso::class,
+        'role' => Modules\Seguridad\Entities\Role::class,
+        'permission' => Modules\Seguridad\Entities\Permiso::class,
     ],
 
     /*

@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => SISP\User::class,
+        'model' => Modules\Seguridad\Entities\Usuario::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

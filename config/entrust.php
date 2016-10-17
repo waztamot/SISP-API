@@ -19,7 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'SISP\Entities\Role',
+    'role' => '\Modules\Seguridad\Entities\Role',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'SISP\Entities\Permiso',
+    'permission' => '\Modules\Seguridad\Entities\Permiso',
 
     /*
     |--------------------------------------------------------------------------

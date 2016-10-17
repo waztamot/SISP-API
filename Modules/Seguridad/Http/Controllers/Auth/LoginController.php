@@ -1,6 +1,6 @@
 <?php
 
-namespace SISP\Http\Controllers\Auth;
+namespace Modules\Seguridad\Http\Controllers\Auth;
 
 use Auth;
 use Cache;
@@ -33,7 +33,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['except' => 'login']);
+        $this->middleware('jwt.auth', ['except' => 'login'] );
     }
 
     public function login(Request $request)
@@ -61,10 +61,15 @@ class LoginController extends Controller
     /* No Implementado */
     public function logout()
     {
-        /*if (JWTAuth::invalidate(JWTAuth::getToken())) {
+        if (Auth::logout()) {
             return response()->json(['success' => true], 200);
-        } 
+        }
 
-        return response()->json(['error' => true], 200);*/
+        return response()->json(['error' => true], 200);
+    }
+
+    public function test()
+    {
+        return '<h1>Hola test</h1>';
     }
 }

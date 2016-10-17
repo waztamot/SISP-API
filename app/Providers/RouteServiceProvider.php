@@ -70,10 +70,24 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => ['api','cors'],
-            'namespace' => $this->namespace,
+            // 'namespace' => $this->namespace,
+            'namespace' => 'Modules',
             'prefix' => 'api',
         ], function ($router) {
-            require base_path('routes/api.php');
+
+            // require base_path('routes/api.php');
+
+            $routesModules = [
+                base_path('Modules/Seguridad/Http/routes.php'),
+                // base_path('Modules/**/Routes/routes.php'),
+            ];
+
+            for ($i=0; $i < count($routesModules); $i++) { 
+                if (file_exists($routesModules[$i])) {
+                    require $routesModules[$i];
+                }
+            }
+
         });
     }
 }

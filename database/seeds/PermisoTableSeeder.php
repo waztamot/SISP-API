@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use SISP\Entities\Permiso;
-use SISP\Entities\Role;
+use Modules\Seguridad\Entities\Permiso;
 
 class PermisoTableSeeder extends Seeder
 {
@@ -23,6 +22,12 @@ class PermisoTableSeeder extends Seeder
         'name' => 'config',
         'display_name' => 'Configuración',
         'description' => 'Permiso para acceder al módulo de configuración', // optional
+      ]);
+
+      Permiso::create([
+        'name' => 'secret',
+        'display_name' => 'Secreto Unico',
+        'description' => 'Permiso de un usuario especial', // optional
       ]);
 
       // Role::create([

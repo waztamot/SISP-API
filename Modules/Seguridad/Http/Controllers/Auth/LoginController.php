@@ -7,7 +7,7 @@ use Cache;
 use ErrorException;
 use Illuminate\Http\Request;
 use JWTAuth;
-use Modules\Seguridad\Entities\Usuario;
+use Modules\Seguridad\Entities\Role;
 use SISP\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -44,7 +44,7 @@ class LoginController extends Controller
             // verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
                 // return response()->json(['error' => trans('validation.invalid_user')], 401);
-                return response()->json(['error' => 'Usuario Invalido'], 401);
+                return response()->json(['error' => 'Usuario Invalido'], 400);
             } elseif (!Auth::user()->activo) {
                 // Auth::logout();
                 // return response()->json(['error' => trans('validation.active_user')], 401);
@@ -73,7 +73,7 @@ class LoginController extends Controller
         return '<h1>Hola test</h1>';
     }
 
-    public function user()
+    public function usuario()
     {
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
@@ -87,37 +87,42 @@ class LoginController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
         }
         //The token is valid and we have found the user via the sub claim
+        $user = ['cedula' => $user->cedula, 'nombre' => $user->nombre];
         return response()->json(compact('user'));
     }
 
-    public function permissions()
+    public function permisos()
     {
-        $username = Auth::user()->username;
+        $cedula = Auth::user()->cedula;
         Cache::flush();
-        if (!Cache::has('role_'.$username) || !Cache::has('permissions_'.$username)) {
+        if (!Cache::has('acl_'.$cedula)) {
             try {
-                $getRole = Auth::user()->roles();
-                return response()->json(['acl' => $getRole], 200);
-                $role = $getRole[0]->name;
+                $getRoles = Auth::user()->getRoles();
 
-                $getPermissions = Auth::user()->permissions();
-                $permissions = [];
-
-                foreach ($getPermissions as $key => $value) {
-                    array_push($permissions, $value->name);
+                $rolesIds = [];
+                foreach ($getRoles as $key => $value) {
+                    array_push($rolesIds, $value->id);
                 }
-                Cache::forever('role_'.$username, $role);
-                Cache::forever('permissions_'.$username, $permissions);
+
+                $rolesCollection = Role::with('perms')->whereIn('id', $rolesIds)->get();
+
+                $acl = [];
+                foreach ($rolesCollection as $key => $valueRole) {
+                    $permisos = [];
+                    foreach ($valueRole->perms as $key2 => $valuePermission) {
+                        array_push($permisos, $valuePermission->name);
+                    }
+                    array_push($acl, [$valueRole->name => $permisos]);
+                }
+                Cache::forever('acl_'.$cedula, $acl);
 
             } catch (ErrorException $e) {
-                Auth::logout();
-                return response()->json(['error' => trans('validation.permissions_user')], 401);
+                return response()->json(['error' => trans('validation.permisos_usuario')], 401);
             }
         } else {
-            $role = Cache::get('role_'.$username);
-            $permissions = Cache::get('permissions_'.$username);
+            $acl = Cache::get('acl_'.$cedula);
         }
 
-        return response()->json(['acl' => [$role => $permissions]], 200);
+        return response()->json(['acl' => $acl], 200);
     }
 }

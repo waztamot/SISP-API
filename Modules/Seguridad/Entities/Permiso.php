@@ -9,4 +9,18 @@ use Zizaco\Entrust\EntrustPermission;
 class Permiso extends EntrustPermission
 {
     // protected $table = 'permisos';
+
+  protected $hidden = [
+    'created_at', 'updated_at',
+  ];
+
+  /**
+   * Permission belongs to many users.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function usuarios()
+  {
+    return $this->belongsToMany(config('auth.providers.users.model'))->withTimestamps();
+  }
 }

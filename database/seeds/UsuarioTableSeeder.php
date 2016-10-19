@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use SISP\Entities\Usuario;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
+use Modules\Seguridad\Entities\Usuario;
 
 class UsuarioTableSeeder extends Seeder
 {

@@ -19,7 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => '\Modules\Seguridad\Entities\Role',
+    'role' => \Modules\Seguridad\Entities\Role::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => '\Modules\Seguridad\Entities\Permiso',
+    'permission' => \Modules\Seguridad\Entities\Permiso::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -95,4 +95,27 @@ return [
     |--------------------------------------------------------------------------
     */
     'permission_foreign_key' => 'permiso_id',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Roles, Permissions and Allowed "Pretend"
+    |--------------------------------------------------------------------------
+    |
+    | You can pretend or simulate package behavior no matter what is in your
+    | database. It is really useful when you are testing you application.
+    | Set up what will methods is(), can() and allowed() return.
+    |
+    */
+
+    'pretend' => [
+
+        'enabled' => false,
+
+        'options' => [
+            'is' => true,
+            'can' => true,
+            'allowed' => true,
+        ],
+
+    ],
 ];

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Modules\Seguridad\Entities\Role;
 // use Faker\Factory as Faker;
-use SISP\Entities\Role;
 
 class RoleTableSeeder extends Seeder
 {

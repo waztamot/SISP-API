@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(SISP\Entities\Usuario::class, function (Faker\Generator $faker) {
+$factory->define(Modules\Seguridad\Entities\Usuario::class, function (Faker\Generator $faker) {
   static $password;
     return [
         'id' => $faker->uuid,
@@ -21,7 +21,7 @@ $factory->define(SISP\Entities\Usuario::class, function (Faker\Generator $faker)
         ];
       });
 
-$factory->define(SISP\Entities\Role::class, function (Faker\Generator $faker) {
+$factory->define(Modules\Seguridad\Entities\Role::class, function (Faker\Generator $faker) {
   $name = $faker->word;
   
   return [
@@ -31,7 +31,7 @@ $factory->define(SISP\Entities\Role::class, function (Faker\Generator $faker) {
   ];
 });
 
-$factory->define(SISP\Entities\Permiso::class, function (Faker\Generator $faker) {
+$factory->define(Modules\Seguridad\Entities\Permiso::class, function (Faker\Generator $faker) {
   $name = $faker->word.' '.$faker->word;
 
   return [

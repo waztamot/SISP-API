@@ -12,5 +12,6 @@ return [
         'charset'       => env('DB_CHARSET', 'AL32UTF8'),
         'prefix'        => env('DB_PREFIX', ''),
         'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
+        'schema'        => env('DB_SCHEMA',''),
     ],
 ];

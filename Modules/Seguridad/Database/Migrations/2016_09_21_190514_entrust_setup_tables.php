@@ -21,20 +21,20 @@ class EntrustSetupTables extends Migration
         });
 
         // Create table for associating roles to users (Many-to-Many)
-        Schema::create('role_usuario', function (Blueprint $table) {
-            $table->string('usuario_id');
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->string('user_id');
             $table->integer('role_id')->unsigned();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['usuario_id', 'role_id']);
+            $table->primary(['user_id', 'role_id']);
         });
 
         // Create table for storing permissions
-        Schema::create('permisos', function (Blueprint $table) {
+        Schema::create('permits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -43,29 +43,29 @@ class EntrustSetupTables extends Migration
         });
 
         // Create table for associating permissions to roles (Many-to-Many)
-        Schema::create('permiso_role', function (Blueprint $table) {
-            $table->integer('permiso_id')->unsigned();
+        Schema::create('permit_role', function (Blueprint $table) {
+            $table->integer('permit_id')->unsigned();
             $table->integer('role_id')->unsigned();
 
-            $table->foreign('permiso_id')->references('id')->on('permisos')
+            $table->foreign('permit_id')->references('id')->on('permits')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['permiso_id', 'role_id']);
+            $table->primary(['permit_id', 'role_id']);
         });
 
         // Create table for associating roles to users (Many-to-Many)
-        Schema::create('permiso_usuario', function (Blueprint $table) {
-            $table->string('usuario_id');
-            $table->integer('permiso_id')->unsigned();
+        Schema::create('permit_user', function (Blueprint $table) {
+            $table->string('user_id');
+            $table->integer('permit_id')->unsigned();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('permiso_id')->references('id')->on('permisos')
+            $table->foreign('permit_id')->references('id')->on('permits')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['usuario_id', 'permiso_id']);
+            $table->primary(['user_id', 'permit_id']);
         });
 
 
@@ -78,10 +78,10 @@ class EntrustSetupTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permiso_usuario');
-        Schema::dropIfExists('permiso_role');
-        Schema::dropIfExists('permisos');
-        Schema::dropIfExists('role_usuario');
+        Schema::dropIfExists('permit_user');
+        Schema::dropIfExists('permit_role');
+        Schema::dropIfExists('permits');
+        Schema::dropIfExists('role_user');
         Schema::dropIfExists('roles');
     }
 }

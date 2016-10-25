@@ -1,5 +1,7 @@
 <?php
 
+namespace Modules\Seguridad\Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Modules\Seguridad\Entities\Role;
 // use Faker\Factory as Faker;

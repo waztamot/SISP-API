@@ -1,10 +1,12 @@
 <?php
 
+namespace Modules\Seguridad\Database\Seeders;
+
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Modules\Seguridad\Entities\Usuario;
+use Modules\Seguridad\Entities\User;
 
-class UsuarioTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,35 +18,35 @@ class UsuarioTableSeeder extends Seeder
 
       $faker = Faker::create('es_VE');
 
-      $admin = Usuario::create([
+      $admin = User::create([
                   'id' => $faker->uuid,
-                  'cedula' => '666',
-                  'nombre' => 'Administrador',
+                  'identification' => '666',
+                  'name' => 'Administrador',
                   'password' => bcrypt('123'),
                 ]);
 
        $admin->attachRole(1);
 
-      $rrhh = Usuario::create([
+      $rrhh = User::create([
                 'id' => $faker->uuid,
-                'cedula' => '02010406',
-                'nombre' => 'Talento Humano',
+                'identification' => '02010406',
+                'name' => 'Talento Humano',
                 'password' => bcrypt('123'),
               ]);
 
        $rrhh->attachRole(2);
 
-      // $supervisor = Usuario::create([
+      // $supervisor = User::create([
       //           'id' => $faker->uuid,
-      //           'cedula' => 'superv',
-      //           'nombre' => 'Supervisor',
+      //           'identification' => 'superv',
+      //           'name' => 'Supervisor',
       //           'password' => bcrypt('123'),
       //         ]);
 
-      // $empleado = Usuario::create([
+      // $empleado = User::create([
       //           'id' => $faker->uuid,
-      //           'cedula' => 'empleado',
-      //           'nombre' => 'Empleado',
+      //           'identification' => 'empleado',
+      //           'name' => 'Empleado',
       //           'password' => bcrypt('123'),
       //         ]);
    }

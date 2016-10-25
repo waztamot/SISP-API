@@ -8,7 +8,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use InvalidArgumentException;
 
-class Usuario extends Authenticatable
+class User extends Authenticatable
 {
   use Notifiable;
   use LogsActivity;
@@ -16,7 +16,7 @@ class Usuario extends Authenticatable
 
   public $incrementing = false;
 
-  // protected $table = 'usuarios';
+  // protected $table = 'users';
 
   /**
    * The attributes that are mass assignable.
@@ -24,10 +24,10 @@ class Usuario extends Authenticatable
    * @var array
    */
 
-  protected static $logAttributes = ['cedula', 'nombre', 'active'];
+  protected static $logAttributes = ['identification', 'name', 'active'];
 
   protected $fillable = [
-    'id', 'cedula', 'nombre', 'active',
+    'id', 'identification', 'name', 'active',
   ];
 
   /**

@@ -6,7 +6,7 @@ namespace Modules\Seguridad\Entities;
 // use Johnnymn\Sim\Roles\Models\Permission;
 use Zizaco\Entrust\EntrustPermission;
 
-class Permiso extends EntrustPermission
+class Permit extends EntrustPermission
 {
     // protected $table = 'permisos';
 
@@ -19,7 +19,7 @@ class Permiso extends EntrustPermission
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
    */
-  public function usuarios()
+  public function users()
   {
     return $this->belongsToMany(config('auth.providers.users.model'))->withTimestamps();
   }

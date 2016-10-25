@@ -11,12 +11,12 @@
 |
 */
 
-$factory->define(Modules\Seguridad\Entities\Usuario::class, function (Faker\Generator $faker) {
+/*$factory->define(Modules\Seguridad\Entities\User::class, function (Faker\Generator $faker) {
   static $password;
     return [
         'id' => $faker->uuid,
-        'cedula' => $faker->randomNumber($nbDigits = 8),
-        'nombre' => $faker->name,
+        'identification' => $faker->randomNumber($nbDigits = 8),
+        'name' => $faker->name,
         'password' => $password ?: $password = bcrypt('secret'),
         ];
       });
@@ -31,7 +31,7 @@ $factory->define(Modules\Seguridad\Entities\Role::class, function (Faker\Generat
   ];
 });
 
-$factory->define(Modules\Seguridad\Entities\Permiso::class, function (Faker\Generator $faker) {
+$factory->define(Modules\Seguridad\Entities\Permission::class, function (Faker\Generator $faker) {
   $name = $faker->word.' '.$faker->word;
 
   return [
@@ -39,4 +39,4 @@ $factory->define(Modules\Seguridad\Entities\Permiso::class, function (Faker\Gene
     'slug' => str_slug($name, '.'),
     'description' => '** Permiso de prueba **',
   ];
-});
+});*/

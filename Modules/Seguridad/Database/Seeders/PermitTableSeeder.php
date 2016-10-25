@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Modules\Seguridad\Entities\Permiso;
+namespace Modules\Seguridad\Database\Seeders;
 
-class PermisoTableSeeder extends Seeder
+use Illuminate\Database\Seeder;
+use Modules\Seguridad\Entities\Permit;
+
+class PermitTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,19 +14,19 @@ class PermisoTableSeeder extends Seeder
      */
     public function run()
     {
-      Permiso::create([
+      Permit::create([
         'name' => 'security',
         'display_name' => 'Seguridad',
         'description' => 'Permiso para acceder al módulo de seguridad', // optional
       ]);
 
-      Permiso::create([
+      Permit::create([
         'name' => 'config',
         'display_name' => 'Configuración',
         'description' => 'Permiso para acceder al módulo de configuración', // optional
       ]);
 
-      Permiso::create([
+      Permit::create([
         'name' => 'secret',
         'display_name' => 'Secreto Unico',
         'description' => 'Permiso de un usuario especial', // optional

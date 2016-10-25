@@ -14,8 +14,10 @@ class SeguridadDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
+        //Model::unguard();
         // $this->call("OthersTableSeeder");
+        $this->call(PermitTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(UserTableSeeder::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGconfiguracionesTable extends Migration
+class CreateSconfigurationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateGconfiguracionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('gconfiguraciones', function (Blueprint $table) {
+        Schema::create('sconfigurations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('clave')->unique();
-            $table->text('valor');
-            $table->boolean('estado');
+            $table->string('key')->unique();
+            $table->text('value');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateGconfiguracionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gconfiguraciones');
+        Schema::dropIfExists('sconfigurations');
     }
 }

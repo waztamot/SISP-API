@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'user' => Modules\Seguridad\Entities\Usuario::class,
+    'user' => Modules\Seguridad\Entities\User::class,
 
     /*
     |--------------------------------------------------------------------------

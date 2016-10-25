@@ -40,7 +40,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => \Modules\Seguridad\Entities\Permiso::class,
+    'permission' => \Modules\Seguridad\Entities\Permit::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     | database.
     |
     */
-    'permissions_table' => 'permisos',
+    'permissions_table' => 'permits',
 
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +62,7 @@ return [
     | between permissions and roles to the database.
     |
     */
-    'permission_role_table' => 'permiso_role',
+    'permission_role_table' => 'permit_role',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,14 +73,14 @@ return [
     | database.
     |
     */
-    'role_user_table' => 'role_usuario',
+    'role_user_table' => 'role_user',
 
     /*
     |--------------------------------------------------------------------------
     | User Foreign key on Entrust's role_user Table (Pivot)
     |--------------------------------------------------------------------------
     */
-    'user_foreign_key' => 'usuario_id',
+    'user_foreign_key' => 'user_id',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     | Permission Foreign key on Entrust's permission_role Table (Pivot)
     |--------------------------------------------------------------------------
     */
-    'permission_foreign_key' => 'permiso_id',
+    'permission_foreign_key' => 'permit_id',
 
     /*
     |--------------------------------------------------------------------------

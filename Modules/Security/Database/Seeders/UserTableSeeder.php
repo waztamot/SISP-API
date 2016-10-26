@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Seguridad\Database\Seeders;
+namespace Modules\Security\Database\Seeders;
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Modules\Seguridad\Entities\User;
+use Modules\Security\Entities\User;
 
 class UserTableSeeder extends Seeder
 {

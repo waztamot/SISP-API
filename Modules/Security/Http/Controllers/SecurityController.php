@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Seguridad\Http\Controllers;
+namespace Modules\Security\Http\Controllers;
 
 use JWTAuth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class SeguridadController extends Controller
+class SecurityController extends Controller
 {
     public function __construct()
     {
@@ -29,7 +29,7 @@ class SeguridadController extends Controller
      */
     public function create()
     {
-        return view('seguridad::create');
+        return view('security::create');
     }
 
     /**
@@ -47,7 +47,7 @@ class SeguridadController extends Controller
      */
     public function edit()
     {
-        return view('seguridad::edit');
+        return view('security::edit');
     }
 
     /**

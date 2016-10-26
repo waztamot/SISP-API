@@ -78,7 +78,7 @@ class RouteServiceProvider extends ServiceProvider
             // require base_path('routes/api.php');
 
             $routesModules = [
-                base_path('Modules/Seguridad/Http/routes.php'),
+                base_path('Modules/Security/Http/routes.php'),
                 // base_path('Modules/**/Routes/routes.php'),
             ];
 

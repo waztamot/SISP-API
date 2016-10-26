@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/seguridad",
+    "name": "nwidart/security",
     "description": "",
     "authors": [
         {
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Modules\\Seguridad\\": ""
+            "Modules\\Security\\": ""
         }
     }
 }

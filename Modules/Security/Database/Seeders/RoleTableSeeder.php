@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Seguridad\Database\Seeders;
+namespace Modules\Security\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Seguridad\Entities\Role;
+use Modules\Security\Entities\Role;
 // use Faker\Factory as Faker;
 
 class RoleTableSeeder extends Seeder

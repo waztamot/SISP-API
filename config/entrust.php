@@ -19,7 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => \Modules\Seguridad\Entities\Role::class,
+    'role' => \Modules\Security\Entities\Role::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => \Modules\Seguridad\Entities\Permit::class,
+    'permission' => \Modules\Security\Entities\Permit::class,
 
     /*
     |--------------------------------------------------------------------------

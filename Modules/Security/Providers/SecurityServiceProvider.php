@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Seguridad\Providers;
+namespace Modules\Security\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class SeguridadServiceProvider extends ServiceProvider
+class SecurityServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -43,10 +43,10 @@ class SeguridadServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('seguridad.php'),
+            __DIR__.'/../Config/config.php' => config_path('security.php'),
         ]);
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'seguridad'
+            __DIR__.'/../Config/config.php', 'security'
         );
     }
 
@@ -57,7 +57,7 @@ class SeguridadServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = base_path('resources/views/modules/seguridad');
+        $viewPath = base_path('resources/views/modules/security');
 
         $sourcePath = __DIR__.'/../';
 
@@ -66,8 +66,8 @@ class SeguridadServiceProvider extends ServiceProvider
         ]);
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/seguridad';
-        }, \Config::get('view.paths')), [$sourcePath]), 'seguridad');
+            return $path . '/modules/security';
+        }, \Config::get('view.paths')), [$sourcePath]), 'security');
     }
 
     /**
@@ -77,12 +77,12 @@ class SeguridadServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = base_path('resources/lang/modules/seguridad');
+        $langPath = base_path('resources/lang/modules/security');
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'seguridad');
+            $this->loadTranslationsFrom($langPath, 'security');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'seguridad');
+            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'security');
         }
     }
 

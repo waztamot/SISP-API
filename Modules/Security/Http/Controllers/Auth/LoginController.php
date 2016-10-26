@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Seguridad\Http\Controllers\Auth;
+namespace Modules\Security\Http\Controllers\Auth;
 
 use Auth;
 use Cache;
 use ErrorException;
 use Illuminate\Http\Request;
 use JWTAuth;
-use Modules\Seguridad\Entities\Role;
+use Modules\Security\Entities\Role;
 use SISP\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 

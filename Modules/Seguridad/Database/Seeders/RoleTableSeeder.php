@@ -25,13 +25,14 @@ class RoleTableSeeder extends Seeder
 
       $admin->attachPermission(1);
       $admin->attachPermission(2);
+      $admin->attachPermission(3);
 
       $rrhh = Role::create([
                 'name' => 'rrhh',
                 'display_name' => 'Talento Humano',
                 'description' => 'Talento Humano',
               ]);
-      $rrhh->attachPermission(1);
+      // $rrhh->attachPermission(1);
       $rrhh->attachPermission(2);
 
 

@@ -29,7 +29,8 @@ class UserTableSeeder extends Seeder
 
       $rrhh = User::create([
                 'id' => $faker->uuid,
-                'identification' => '02010406',
+                // 'identification' => '02010406',
+                'identification' => '333',
                 'name' => 'Talento Humano',
                 'password' => bcrypt('123'),
               ]);

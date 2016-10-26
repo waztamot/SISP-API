@@ -38,14 +38,14 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('cedula', 'password');
+        $credentials = $request->only('identification', 'password');
 
         try {
             // verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
                 // return response()->json(['error' => trans('validation.invalid_user')], 401);
                 return response()->json(['error' => 'Usuario Invalido'], 400);
-            } elseif (!Auth::user()->activo) {
+            } elseif (!Auth::user()->active) {
                 // Auth::logout();
                 // return response()->json(['error' => trans('validation.active_user')], 401);
                 return response()->json(['error' => 'Usuario No activo'], 401);
@@ -53,7 +53,8 @@ class LoginController extends Controller
         } catch (JWTException $e) {
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
-        }
+        }   
+
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'), 200);
     }
@@ -73,7 +74,14 @@ class LoginController extends Controller
         return '<h1>Hola test</h1>';
     }
 
-    public function usuario()
+    public function user()
+    {
+        $user_login = $this->getUser();
+        $acl = $this->getPermissions();
+        return response()->json(['user' => $user_login, 'acl' => $acl]);
+    }
+
+    private function getUser()
     {
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
@@ -87,42 +95,49 @@ class LoginController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
         }
         //The token is valid and we have found the user via the sub claim
-        $user = ['cedula' => $user->cedula, 'nombre' => $user->nombre];
-        return response()->json(compact('user'));
+        $user = ['identification' => $user->identification, 'name' => $user->name];
+        return $user;
     }
 
-    public function permisos()
+    public function permissions()
     {
-        $cedula = Auth::user()->cedula;
-        Cache::flush();
-        if (!Cache::has('acl_'.$cedula)) {
-            try {
-                $getRoles = Auth::user()->getRoles();
+        
+        $acl = $this->getPermissions();
+        return response()->json(['acl' => $acl], 200);
+    }
 
-                $rolesIds = [];
-                foreach ($getRoles as $key => $value) {
-                    array_push($rolesIds, $value->id);
+    private function getPermissions()
+    {
+        $identification = Auth::user()->identification;
+        Cache::flush();
+        if (!Cache::has('acl_'.$identification)) {
+            try {
+                $get_roles = Auth::user()->getRoles();
+
+                $roles_ids = [];
+                foreach ($get_roles as $key => $value) {
+                    array_push($roles_ids, $value->id);
                 }
 
-                $rolesCollection = Role::with('perms')->whereIn('id', $rolesIds)->get();
+                $roles_collection = Role::with('perms')->whereIn('id', $roles_ids)->get();
 
                 $acl = [];
-                foreach ($rolesCollection as $key => $valueRole) {
-                    $permisos = [];
-                    foreach ($valueRole->perms as $key2 => $valuePermission) {
-                        array_push($permisos, $valuePermission->name);
+                foreach ($roles_collection as $key => $value_role) {
+                    $permissions = [];
+                    foreach ($value_role->perms as $key2 => $value_permission) {
+                        array_push($permissions, $value_permission->name);
                     }
-                    array_push($acl, [$valueRole->name => $permisos]);
+                    array_push($acl, [$value_role->name => $permissions]);
                 }
-                Cache::forever('acl_'.$cedula, $acl);
+                Cache::forever('acl_'.$identification, $acl);
 
             } catch (ErrorException $e) {
-                return response()->json(['error' => trans('validation.permisos_usuario')], 401);
+                return response()->json(['error' => trans('validation.permissions_user')], 401);
             }
         } else {
-            $acl = Cache::get('acl_'.$cedula);
+            $acl = Cache::get('acl_'.$identification);
         }
 
-        return response()->json(['acl' => $acl], 200);
+        return $acl;
     }
 }

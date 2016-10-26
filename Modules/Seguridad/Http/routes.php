@@ -4,8 +4,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Seguridad\Http\Controllers\Aut
   
   Route::post('/login', 'LoginController@login');
   Route::get('/test', 'LoginController@test');
-  Route::post('user','LoginController@usuario');
-  Route::post('/permissions','LoginController@permisos');
+  Route::post('/user','LoginController@user');
+  Route::post('/permissions','LoginController@permissions');
   
 });
 

@@ -141,6 +141,12 @@ class PermitTableSeeder extends Seeder
       ]);
 
       Permit::create([
+        'name' => 'product.config',
+        'display_name' => 'Producto - Configuración',
+        'description' => 'Permiso para gestionar la configuración de los productos', // optional
+      ]);
+
+      Permit::create([
         'name' => 'secret',
         'display_name' => 'Secreto Unico',
         'description' => 'Permiso de un usuario especial', // optional

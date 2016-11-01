@@ -117,6 +117,7 @@ return [
     */
 
     'attributes'           => [
+        'identification'        => 'cedula',
         'name'                  => 'nombre',
         'username'              => 'usuario',
         'email'                 => 'correo electrónico',

@@ -68,7 +68,8 @@ class LoginController extends Controller
 
   public function test()
   {
-    return '<h1>Hola test</h1>';
+    $user = Auth::check();
+    return response()->json(['user' => $user]);
   }
 
   public function user()
@@ -106,7 +107,8 @@ class LoginController extends Controller
 
   private function getPermissions(&$modules = null)
   {
-    $identification = Auth::user()->identification;
+    $user = Auth()->user();
+    $identification = $user->identification;
     Cache::flush();
     if (!Cache::has('acl_'.$identification)) {
       try {

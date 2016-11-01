@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
                   'identification' => '666',
                   'name' => 'Administrador',
                   'password' => bcrypt('123'),
+                  'api_token' => str_random(50),
                 ]);
 
       $admin->attachRole(1);
@@ -33,6 +34,7 @@ class UserTableSeeder extends Seeder
                 'identification' => '333',
                 'name' => 'Talento Humano',
                 'password' => bcrypt('123'),
+                'api_token' => str_random(50),
               ]);
 
        $rrhh->attachRole(2);
@@ -49,6 +51,7 @@ class UserTableSeeder extends Seeder
                 'identification' => '999',
                 'name' => 'Empleado',
                 'password' => bcrypt('123'),
+                'api_token' => str_random(50),
               ]);
 
       $empleado->attachRole(4);
@@ -59,6 +62,7 @@ class UserTableSeeder extends Seeder
                 'name' => 'Empleado Inactivo',
                 'active' => false,
                 'password' => bcrypt('123'),
+                'api_token' => str_random(50),
               ]);
 
       $empleadoI->attachRole(4);
@@ -67,8 +71,9 @@ class UserTableSeeder extends Seeder
                 'id' => $faker->uuid,
                 'identification' => '000',
                 'name' => 'Empleado Sin Permisos',
-                'active' => false,
+                'active' => true,
                 'password' => bcrypt('123'),
+                'api_token' => str_random(50),
               ]);
    }
  }

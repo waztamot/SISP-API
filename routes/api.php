@@ -13,8 +13,8 @@
 |
 */
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+/*Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
   Route::post('login', 'LoginController@login');
 
-});
+});*/

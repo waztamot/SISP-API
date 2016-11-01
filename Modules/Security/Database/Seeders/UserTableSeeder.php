@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
                   'password' => bcrypt('123'),
                 ]);
 
-       $admin->attachRole(1);
+      $admin->attachRole(1);
 
       $rrhh = User::create([
                 'id' => $faker->uuid,
@@ -44,11 +44,31 @@ class UserTableSeeder extends Seeder
       //           'password' => bcrypt('123'),
       //         ]);
 
-      // $empleado = User::create([
-      //           'id' => $faker->uuid,
-      //           'identification' => 'empleado',
-      //           'name' => 'Empleado',
-      //           'password' => bcrypt('123'),
-      //         ]);
+      $empleado = User::create([
+                'id' => $faker->uuid,
+                'identification' => '999',
+                'name' => 'Empleado',
+                'password' => bcrypt('123'),
+              ]);
+
+      $empleado->attachRole(4);
+
+      $empleadoI = User::create([
+                'id' => $faker->uuid,
+                'identification' => '111',
+                'name' => 'Empleado Inactivo',
+                'active' => false,
+                'password' => bcrypt('123'),
+              ]);
+
+      $empleadoI->attachRole(4);
+
+      $empleado = User::create([
+                'id' => $faker->uuid,
+                'identification' => '000',
+                'name' => 'Empleado Sin Permisos',
+                'active' => false,
+                'password' => bcrypt('123'),
+              ]);
    }
  }

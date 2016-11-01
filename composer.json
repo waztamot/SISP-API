@@ -13,8 +13,7 @@
         "nwidart/laravel-modules": "^1.13",
         "zizaco/entrust": "^1.7",
         "tymon/jwt-auth": "^0.5.9",
-        "barryvdh/laravel-cors": "^0.8.2",
-        "caouecs/laravel-lang": "~3.0"
+        "barryvdh/laravel-cors": "^0.8.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

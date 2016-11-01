@@ -42,12 +42,10 @@ class LoginController extends Controller
     try {
       // verify the credentials and create a token for the user
       if (!$token = JWTAuth::attempt($credentials)) {
-        // return response()->json(['error' => trans('validation.invalid_user')], 401);
-        return response()->json(['error' => 'Usuario Invalido'], 400);
+        return response()->json(['error' => trans('auth.failed')], 400);
       } elseif (!Auth::user()->active) {
         // Auth::logout();
-        // return response()->json(['error' => trans('validation.active_user')], 401);
-        return response()->json(['error' => 'Usuario No activo'], 401);
+        return response()->json(['error' => trans('validation.custom.user.inactive')], 401);
       }
     } catch (JWTException $e) {
       // something went wrong
@@ -148,7 +146,7 @@ class LoginController extends Controller
         Cache::forever('acl_'.$identification, $acl);
 
       } catch (ErrorException $e) {
-        return response()->json(['error' => trans('validation.permissions_user')], 401);
+        return response()->json(['error' => trans('validation.custom.user.permits')], 401);
       }
     } else {
       $acl = Cache::get('acl_'.$identification);

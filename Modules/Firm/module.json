@@ -1,0 +1,15 @@
+{
+    "name": "Firm",
+    "alias": "firm",
+    "description": "",
+    "keywords": [],
+    "active": 0,
+    "order": 0,
+    "providers": [
+        "Modules\\Firm\\Providers\\FirmServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php"
+    ]
+}

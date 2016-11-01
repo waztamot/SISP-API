@@ -22,28 +22,35 @@ class RoleTableSeeder extends Seeder
                 'display_name' => 'Administrador',
                 'description' => 'Todopoderoso',
               ]);
-
-      $admin->attachPermission(1);
-      $admin->attachPermission(2);
-      $admin->attachPermission(3);
+      for ($i=1; $i <= 22; $i++) { 
+        $admin->attachPermission($i);
+      }
 
       $rrhh = Role::create([
                 'name' => 'rrhh',
                 'display_name' => 'Talento Humano',
                 'description' => 'Talento Humano',
               ]);
-      // $rrhh->attachPermission(1);
-      $rrhh->attachPermission(2);
-
-
+      $rrhh->attachPermission(2);   //  Home
+      $rrhh->attachPermission(16);  //  Firm
+      $rrhh->attachPermission(17);
+      $rrhh->attachPermission(18);  //  Product
+      $rrhh->attachPermission(19);
+      $rrhh->attachPermission(20);
+      $rrhh->attachPermission(21);
 
       $supervisor = Role::create([
                 'name' => 'superv',
                 'display_name' => 'Supervisor',
                 'description' => 'Supervisor',
               ]);
-      $supervisor->attachPermission(1);
-      $supervisor->attachPermission(2);
+      $supervisor->attachPermission(2);   //  Home
+      $supervisor->attachPermission(16);  //  Firm
+      $supervisor->attachPermission(17);
+      $supervisor->attachPermission(18);  //  Product
+      $supervisor->attachPermission(19);
+      $supervisor->attachPermission(20);
+      $supervisor->attachPermission(21);
 
 
       $empleado = Role::create([
@@ -51,8 +58,10 @@ class RoleTableSeeder extends Seeder
                 'display_name' => 'Empleado',
                 'description' => 'Empleado',
               ]);
-      $empleado->attachPermission(1);
-      $empleado->attachPermission(2);
-
+      $empleado->attachPermission(16);  //  Firm
+      $empleado->attachPermission(17);
+      $empleado->attachPermission(18);  //  Product
+      $empleado->attachPermission(19);
+      $empleado->attachPermission(20);
     }
 }

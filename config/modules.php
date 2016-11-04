@@ -142,10 +142,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'bd_consulting',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name' => 'BD Consulting',
+            'email' => 'bd.consulting@gmail.com',
         ],
     ],
     /*

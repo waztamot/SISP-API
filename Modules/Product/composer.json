@@ -1,10 +1,10 @@
 {
-    "name": "nwidart/product",
+    "name": "db_consulting/product",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "BD Consulting",
+            "email": "bd.consulting@gmail.com"
         }
     ],
     "autoload": {

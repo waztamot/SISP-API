@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
         // Johnnymn\Sim\Roles\RolesServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,

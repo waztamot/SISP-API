@@ -1,10 +1,10 @@
 {
-    "name": "nwidart/security",
+    "name": "bd_consulting/security",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "BD Consulting",
+            "email": "bd.consulting@gmail.com"
         }
     ],
     "autoload": {

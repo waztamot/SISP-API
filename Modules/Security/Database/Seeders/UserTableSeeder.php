@@ -75,5 +75,16 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),
               ]);
+
+      $empleado = User::create([
+                'id' => $faker->uuid,
+                'identification' => '001',
+                'name' => 'Empleado Sin Permisos',
+                'active' => true,
+                'password' => bcrypt('123'),
+                'api_token' => str_random(50),
+              ]);
+
+      $empleado->delete();
    }
  }

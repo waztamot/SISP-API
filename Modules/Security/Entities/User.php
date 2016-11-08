@@ -2,18 +2,20 @@
 
 namespace Modules\Security\Entities;
 
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Notifications\Notifiable;
 use InvalidArgumentException;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Tymon\JWTAuth\Contracts\JWTSubject as AuthenticatableUserContract;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable implements AuthenticatableUserContract
 {
   use Notifiable;
   use LogsActivity;
   use EntrustUserTrait;
+  use SoftDeletes { SoftDeletes::restore insteadof EntrustUserTrait; }
 
   public $incrementing = false;
 
@@ -25,10 +27,12 @@ class User extends Authenticatable implements AuthenticatableUserContract
    * @var array
    */
 
+  protected $dates = ['deleted_at'];
+
   protected static $logAttributes = ['identification', 'name', 'active'];
 
   protected $fillable = [
-    'id', 'identification', 'name', 'active',
+    'id', 'identification', 'name', 'active', 
   ];
 
   /**
@@ -37,8 +41,18 @@ class User extends Authenticatable implements AuthenticatableUserContract
    * @var array
    */
   protected $hidden = [
-    'password', 'remember_token',
+    'password', 'remember_token', 'created_at', 'updated_at', 'deleted_at',
   ];
+
+  /**
+   * Many-to-Many relations with the permits model.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function permits()
+  {
+    return $this->belongsToMany(config('entrust.permission'));
+  }
 
   /**
    * Get all roles as collection.
@@ -69,4 +83,5 @@ class User extends Authenticatable implements AuthenticatableUserContract
              ]
         ];
     }
+
 }

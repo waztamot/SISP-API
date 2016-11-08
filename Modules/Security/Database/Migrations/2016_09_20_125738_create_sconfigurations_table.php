@@ -19,6 +19,7 @@ class CreateSconfigurationsTable extends Migration
             $table->text('value');
             $table->boolean('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

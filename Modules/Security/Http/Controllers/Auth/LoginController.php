@@ -10,7 +10,10 @@ use JWTAuth;
 use Modules\Security\Entities\Role;
 use Nwidart\Modules\Facades\Module;
 use SISP\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class LoginController extends Controller
 {
@@ -32,7 +35,7 @@ class LoginController extends Controller
    */
   public function __construct()
   {
-    // $this->middleware('jwt.auth', ['except' => 'login'] );
+    $this->middleware('jwt.auth', ['except' => 'login'] );
   }
 
   public function login(Request $request)
@@ -90,7 +93,9 @@ class LoginController extends Controller
       return response()->json(['token_expired'], $e->getStatusCode());
     } catch (TokenInvalidException $e) {
       return response()->json(['token_invalid'], $e->getStatusCode());
-    }   catch (JWTException $e) {
+    } catch (UnauthorizedHttpException $e){
+      return response()->json(['token_expired'], $e->getStatusCode());
+    } catch (JWTException $e) {
       return response()->json(['token_absent'], $e->getStatusCode());
     }
     //The token is valid and we have found the user via the sub claim

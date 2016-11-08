@@ -19,6 +19,8 @@ class CreateCompanyUserTable extends Migration
             $table->string('company_id')->index();
             $table->string('cost_center_id')->index();
             $table->boolean('status');
+            $table->timestamps();
+            $table->softDeletes();
 
             //  Clave Primaria
             $table->primary(['user_id', 'company_id', 'cost_center_id']);

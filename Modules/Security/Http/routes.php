@@ -9,6 +9,11 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Security\Http\Controllers\Auth
   Route::post('/modules', 'LoginController@modules');
 });
 
+Route::group(['namespace' => 'Security\Http\Controllers'], function () {
+  
+  Route::get('/permit', 'PermitController@index');
+});
+
 
 
 /*Route::group(['prefix' => 'seguridad', 'namespace' => 'Security\Http\Controllers'], function() {

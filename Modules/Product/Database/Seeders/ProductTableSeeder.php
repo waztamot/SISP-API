@@ -5,7 +5,9 @@ namespace Modules\Product\Database\Seeders;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+
 use Modules\Product\Entities\Product;
+use Modules\Product\Entities\ProductPrice;
 
 class ProductTableSeeder extends Seeder
 {
@@ -18,17 +20,24 @@ class ProductTableSeeder extends Seeder
     {
         $faker = Faker::create('es_VE');
 
-        Product::create([
-            'id' => $faker->uuid,
-            'barcode' => $faker->ean13,
-            'name' => 'Leche Completa', 
-            'description' => 'Leche Completa Purisima UHT',
-            'image' => 'leche_completa.png',
-            'available' => false,
-            'product_type_id' => 1,
+        $product = Product::create([
+                        'id' => $faker->uuid,
+                        'barcode' => $faker->ean13,
+                        'name' => 'Leche Completa', 
+                        'description' => 'Leche Completa Purisima UHT',
+                        'image' => 'leche_completa.png',
+                        'available' => false,
+                        'product_type_id' => 1,
+                    ]);
+
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
         ]);
 
-        Product::create([
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Leche Completa',
@@ -37,7 +46,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 1,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Leche Descremada',
@@ -46,7 +62,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 1,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Leche Deslactosada',
@@ -55,7 +78,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 1,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Leche Descremda y Deslactosada',
@@ -64,7 +94,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 1,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Crema de Leche',
@@ -72,7 +109,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 5,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Huevos',
@@ -81,7 +125,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 2,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Salchicha de Cerdo',
@@ -90,7 +141,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 3,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Salchicha de Pollo',
@@ -99,7 +157,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 3,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Mortadela Caracas',
@@ -108,7 +173,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 3,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Mortadela Caracas de Pollo',
@@ -117,7 +189,14 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 3,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Jamon de Cerdo',
@@ -126,13 +205,27 @@ class ProductTableSeeder extends Seeder
             'product_type_id' => 3,
         ]);
 
-        Product::create([
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
+        ]);
+
+        $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
             'name' => 'Jamon de Pavo',
             'description' => 'Jamon de Pavo Alimex',
             'image' => 'jamon_pavo.png',
             'product_type_id' => 3,
+        ]);
+
+        ProductPrice::create([
+            'company' => '1001',
+            'price' => $faker->randomFloat(2,0,999999), 
+            'valid_from' => $faker->date('Y-m-d','now'),
+            'product_id' => $product->id,
         ]);
     }
 }

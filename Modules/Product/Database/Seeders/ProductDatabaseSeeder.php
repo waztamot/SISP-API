@@ -18,5 +18,6 @@ class ProductDatabaseSeeder extends Seeder
 
         $this->call(ProductTypeTableSeeder::class); 
         $this->call(ProductTableSeeder::class); 
+        //$this->call(ProductPriceTableSeeder::class); 
     }
 }

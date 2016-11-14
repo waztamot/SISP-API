@@ -21,5 +21,6 @@ class ProductDatabaseSeeder extends Seeder
         //$this->call(ProductPriceTableSeeder::class); 
         $this->call(CombosTableSeeder::class); 
         //$this->call(ComboDetailsTableSeeder::class); 
+        $this->call(ComboLapsesTableSeeder::class);
     }
 }

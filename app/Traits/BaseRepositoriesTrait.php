@@ -353,13 +353,13 @@ trait BaseRepositoriesTrait
   /**
    * Get list of objects active of an entity with condition and relationship.
    *
-   * @param   Array condition - array of array [['field','operator','value'],[..],..]
    * @param   Array relationship - array of table relationship ['relationship', ..]
+   * @param   Array condition - array of array [['field','operator','value'],[..],..]
    * @param   Array orderBy (optional) - associative array ['field' => 'sort', ..]
    * @return  ListObjects - Result of SQL statement
    * @author  Javier Alarcón
    **/
-  public function getActiveWhereWith(array $condition, array $relationship, array $orderBy = null)
+  public function getActiveWhereWith(array $relationship, array $condition, array $orderBy = null)
   {
     //  Variable initialization
     $query = $this->entity->with($relationship)->where($condition);

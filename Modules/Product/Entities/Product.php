@@ -22,4 +22,9 @@ class Product extends Model
     'created_at', 'updated_at', 'deleted_at',
   ];
 
+
+  public function type() 
+  {
+    return $this->belongsTo(ProductType::class);
+  }
 }

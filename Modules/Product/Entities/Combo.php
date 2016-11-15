@@ -14,10 +14,28 @@ class Combo extends Model
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'id', 'company', 'name', 'max_quantity', 'concept_paysheet', 'automatic_loading',
+    'name', 'max_quantity', 'type'
   ];
 
   protected $hidden = [
-    'created_at', 'updated_at', 'deleted_at', 'parent_id'
+    'id', 
+    'company', 
+    'concept_paysheet', 
+    'automatic_loading', 
+    'parent_id', 
+    'created_at', 
+    'updated_at', 
+    'deleted_at',
   ];
+
+  public function detail() 
+  {
+    return $this->hasMany(ComboDetail::class)->with('product');
+  }
+
+  public function subcombo() 
+  {
+    return $this->hasMany(Combo::class,'parent_id')->with('detail');
+  }
+
 }

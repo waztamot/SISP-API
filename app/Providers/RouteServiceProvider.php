@@ -79,6 +79,7 @@ class RouteServiceProvider extends ServiceProvider
 
             $routesModules = [
                 base_path('Modules/Security/Http/routes.php'),
+                base_path('Modules/Product/Http/routes.php'),
                 // base_path('Modules/**/Routes/routes.php'),
             ];
 

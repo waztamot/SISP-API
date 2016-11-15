@@ -15,16 +15,38 @@ class Product extends Model
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'id', 'barcode', 'name', 'description', 'available', 'image', 'product_type_id',
+    'name', 'description', 'available', 'image', 
   ];
 
   protected $hidden = [
-    'created_at', 'updated_at', 'deleted_at',
+    'id', 
+    'barcode', 
+    'product_type_id',
+    'created_at', 
+    'updated_at', 
+    'deleted_at',
   ];
 
+  public function comboDetail() 
+  {
+    return $this->hasMany(ComboDetail::class);
+  }
 
   public function type() 
   {
     return $this->belongsTo(ProductType::class);
   }
+
+  public function getAvailableAttribute()
+  {
+
+    if ($this->attributes['available'])
+    {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
 }

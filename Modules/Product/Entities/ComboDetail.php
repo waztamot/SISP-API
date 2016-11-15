@@ -14,10 +14,23 @@ class ComboDetail extends Model
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'id', 'quantity', 'concept_paysheet', 'quantity_available',
+    'quantity', 'unity', 'quantity_available',
   ];
 
   protected $hidden = [
-    'created_at', 'updated_at', 'deleted_at', 'combo_id', 'product_id',
+    'id', 'concept_paysheet', 'combo_id', 'product_id', 'created_at', 'updated_at', 'deleted_at',
   ];
+
+  protected $with = ['product'];
+
+  public function product()
+  {
+    return $this->belongsTo(Product::class);
+  }
+
+  public function combos()
+  {
+    return $this->belongsTo(Combo::class);
+  }
+
 }

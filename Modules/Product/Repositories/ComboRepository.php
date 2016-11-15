@@ -18,4 +18,11 @@ class ComboRepository implements BaseRepositories
   {
     return new Combo;
   }
+
+  public function list()
+  {
+    $list = $this->getActiveWhereWith(['detail','subcombo'],[['max_quantity','>','0'],]);
+    return $list;
+  }
+
 }

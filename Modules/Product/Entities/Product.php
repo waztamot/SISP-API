@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Entities;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,7 +28,9 @@ class Product extends Model
     'deleted_at',
   ];
 
-  public function comboDetail() 
+  protected $with = ['price'];
+
+  public function comboDetail()
   {
     return $this->hasMany(ComboDetail::class);
   }
@@ -37,16 +40,19 @@ class Product extends Model
     return $this->belongsTo(ProductType::class);
   }
 
+  public function price() 
+  {
+    return $this->hasOne(ProductPrice::class)->where('valid_from','<=', Carbon::now()->format('Y-m-d'));
+  }
+
   public function getAvailableAttribute()
   {
-
     if ($this->attributes['available'])
     {
       return true;
     } else {
       return false;
     }
-
   }
 
 }

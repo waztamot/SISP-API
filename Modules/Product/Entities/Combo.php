@@ -28,14 +28,14 @@ class Combo extends Model
     'deleted_at',
   ];
 
-  public function detail() 
+  public function details() 
   {
-    return $this->hasMany(ComboDetail::class)->with('product');
+    return $this->hasMany(ComboDetail::class);
   }
 
   public function subcombo() 
   {
-    return $this->hasMany(Combo::class,'parent_id')->with('detail');
+    return $this->hasMany(Combo::class,'parent_id')->with('details');
   }
 
 }

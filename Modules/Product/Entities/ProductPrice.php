@@ -12,10 +12,22 @@ class ProductPrice extends Model
   protected $dates = ['deleted_at'];
   
   protected $fillable = [
-    'id', 'company', 'price', 'quota', 'product_id', 'valid_from', 
+    'price', 
   ];
   
   protected $hidden = [
-    'created_at', 'updated_at', 'deleted_at',
+    'id', 
+    'company', 
+    'quota', 
+    'valid_from',
+    'product_id', 
+    'created_at', 
+    'updated_at', 
+    'deleted_at',
   ];
+
+  public function product() 
+  {
+    return $this->belongsTo(Product::class);
+  }
 }

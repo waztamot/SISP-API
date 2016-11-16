@@ -72,7 +72,8 @@ class LoginController extends Controller
   public function test()
   {
     $user = Auth::check();
-    return response()->json(['user' => $user]);
+    $users = \DB::connection('oracle_ex')->select('select * from v_empleados where cedula = 16866530');
+    return response()->json(['user' => $users]);
   }
 
   public function user()

@@ -103,6 +103,9 @@ return [
             'inactive' => 'Usuario inactivo',
             'permits'  => 'Usuario sin permisos',
         ],
+        'access' => [
+            'denied' => true,
+        ],
     ],
 
     /*

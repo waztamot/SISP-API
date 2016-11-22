@@ -8,4 +8,19 @@ Route::group(['prefix' => 'product', 'namespace' => 'Product\Http\Controllers'],
     Route::post('/list', 'ComboController@getListCombo');
   });
 
+  Route::group(['prefix' => 'requisition',], function () {
+
+    Route::group(['prefix'=> 'individual',], function () {
+      Route::post('/', 'RequisitionController@store');         //  Store
+      Route::put('/update/{id}', 'RequisitionController@update');
+      Route::post('/list', 'RequisitionController@list');     //  List
+    });
+    Route::group(['prefix'=> 'group',], function () {
+      
+    });
+    //Route::post('/list', 'RequisitionController@');
+  });
+
+
+
 });

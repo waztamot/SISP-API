@@ -104,7 +104,7 @@ return [
             'permits'  => 'Usuario sin permisos',
         ],
         'access' => [
-            'denied' => true,
+            'denied' => 'true',
         ],
     ],
 

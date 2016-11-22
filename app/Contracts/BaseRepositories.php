@@ -14,11 +14,11 @@ namespace SISP\Contracts;
 interface BaseRepositories
 {
 
-    /**
-     * Get the entity that will be managed in the repositories.
-     *
-     * @return entity
-     */
-    public function getEntity();
+  /**
+   * Get the entity that will be managed in the repositories.
+   *
+   * @return entity
+   */
+  public function getEntity();
 
 }

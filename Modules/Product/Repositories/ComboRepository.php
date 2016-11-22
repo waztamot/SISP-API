@@ -19,9 +19,13 @@ class ComboRepository implements BaseRepositories
     return new Combo;
   }
 
-  public function list()
+  public function list($company)
   {
-    $list = $this->getActiveWhereWith(['details', 'subcombo'],[['max_quantity','>','0'],]);
+    $list = $this->getActiveWhereWith(array('details', 'subcombo'),
+                                      array(
+                                        ['max_quantity','>','0'],
+                                        ['company','=',$company]
+                                      ))->makeVisible('id');
     return $list;
   }
 

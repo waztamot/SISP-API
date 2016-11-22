@@ -4,8 +4,8 @@ namespace Modules\Security\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 use Modules\Security\Repositories\PermitRepository;
+use SISP\Http\Controllers\Controller;
 
 class PermitController extends Controller
 {

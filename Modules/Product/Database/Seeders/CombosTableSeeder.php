@@ -31,7 +31,7 @@ class CombosTableSeeder extends Seeder
 
         $combo_huevos = Combo::create([
                             'id' => $faker->uuid,
-                            'company' => '1001',
+                            'company' => '1020',
                             'name' => 'Combo Huevos',
                             'max_quantity' => 1,
                             'concept_paysheet' => '626',
@@ -56,7 +56,7 @@ class CombosTableSeeder extends Seeder
 
         $combo_leches = Combo::create([
                             'id' => $faker->uuid,
-                            'company' => '1001',
+                            'company' => '1020',
                             'name' => 'Combo Leche',
                             'max_quantity' => 2,
                             'type' => 'Dinamico',           //  Verificar
@@ -81,7 +81,7 @@ class CombosTableSeeder extends Seeder
 
         $combo_embutidos = Combo::create([
                             'id' => $faker->uuid,
-                            'company' => '1001',
+                            'company' => '1020',
                             'name' => 'Combo Embutidos',
                             'max_quantity' => 1,
                             'type' => 'SubCombo',          // Verificar
@@ -89,7 +89,7 @@ class CombosTableSeeder extends Seeder
 
         $combo_embut1 = Combo::create([
                             'id' => $faker->uuid,
-                            'company' => '1001',
+                            'company' => '1020',
                             'name' => 'Combo Embutidos Tipo A - Full',
                             'max_quantity' => 0,
                             'concept_paysheet' => '679',
@@ -114,7 +114,7 @@ class CombosTableSeeder extends Seeder
 
         $combo_embut2 = Combo::create([
                             'id' => $faker->uuid,
-                            'company' => '1001',
+                            'company' => '1020',
                             'name' => 'Combo Embutidos Tipo B - Med',
                             'max_quantity' => 0,
                             'concept_paysheet' => '677',
@@ -140,7 +140,7 @@ class CombosTableSeeder extends Seeder
 
         $combo_embut3 = Combo::create([
                             'id' => $faker->uuid,
-                            'company' => '1001',
+                            'company' => '1020',
                             'name' => 'Combo Embutidos Tipo C - Peq',
                             'max_quantity' => 0,
                             'concept_paysheet' => '612',

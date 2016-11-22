@@ -5,8 +5,8 @@ namespace Modules\Product\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 
+use SISP\Http\Controllers\Controller;
 use Modules\Product\Repositories\ComboRepository;
 
 class ComboController extends Controller
@@ -25,27 +25,24 @@ class ComboController extends Controller
    */
   public function getListCombo()
   {
-    if (auth()->user()->hasRole('admin') || auth()->user()->can('product.combo.list')) {
-      $combo_list = $this->comboRepo->list();
+    $user = Auth::user();
+
+    if ($user->hasRole(['admin','empleado']) || $user->can('product.request')) {
+
+      $combo_list = $this->comboRepo->list($user->company_id);
 
       foreach ($combo_list as $key_combo => $value_combo) {
+
+        $combo_list[$key_combo]['buy'] = false;               //  Crear Busqueda
+
         if ($value_combo->type === 'SubCombo') {
           unset($combo_list[$key_combo]['details']);
           $combo_list[$key_combo]['details'] = $value_combo->subcombo;
         }
 
-        /*foreach ($combo_list[$key_combo]['details'] as $key_detail => $value_detail) {
-          unset($combo_list[$key_combo]['details'][$key_detail]['product']['price']);
-          $combo_list[$key_combo]['details'][$key_detail]['product']['price'] = $value_detail->product->price->price;
-          //dd($combo_list[$key_combo]['details'][$key_detail]['product']['price'] );
-          //= $value_detail->product->price->price;
-          // dd($combo_list[$key]['details']['product']);
-          // $combo_list[$key]['price'] = $value->price->price;
-        }*/
-
         unset($combo_list[$key_combo]['subcombo']);
-      }
 
+      }
       return response()->json(['data' => $combo_list], 200);
     } else {
       return response()->json(['error' => trans('validation.custom.access.denied')], 200);

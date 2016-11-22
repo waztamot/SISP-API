@@ -7,7 +7,10 @@ use Cache;
 use ErrorException;
 use Illuminate\Http\Request;
 use JWTAuth;
+use Modules\Security\Entities\CostCenter;
 use Modules\Security\Entities\Role;
+use Modules\Security\Entities\Staff;
+use Modules\Security\Entities\User;
 use Nwidart\Modules\Facades\Module;
 use SISP\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -71,8 +74,10 @@ class LoginController extends Controller
 
   public function test()
   {
-    $user = Auth::check();
-    $users = \DB::connection('oracle_ex')->select('select * from v_empleados where cedula = 16866530');
+    $users = User::with(['company', 'costCenter'])->where('identification','16866530')->get();
+    // $users = \DB::connection('oracle_ex')->select('select * from v_empleados where cedula = 16866530');
+    // $users = Staff::with(['company','costCenter'])->where('cedula','16866530')->get()->active();
+    // $users = Staff::with(['company','costCenter'])->active()->get();
     return response()->json(['user' => $users]);
   }
 

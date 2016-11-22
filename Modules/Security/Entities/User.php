@@ -32,7 +32,11 @@ class User extends Authenticatable implements AuthenticatableUserContract
   protected static $logAttributes = ['identification', 'name', 'active'];
 
   protected $fillable = [
-    'id', 'identification', 'name', 'active', 
+    'id', 
+    'identification', 
+    'image',
+    'name', 
+    'active', 
   ];
 
   /**
@@ -41,7 +45,15 @@ class User extends Authenticatable implements AuthenticatableUserContract
    * @var array
    */
   protected $hidden = [
-    'password', 'remember_token', 'created_at', 'updated_at', 'deleted_at',
+    'payroll_type',
+    'password', 
+    'remember_token',
+    'api_token', 
+    'company_id',
+    'cost_center_id', 
+    'created_at',
+    'updated_at', 
+    'deleted_at',
   ];
 
   /**
@@ -52,6 +64,16 @@ class User extends Authenticatable implements AuthenticatableUserContract
   public function permits()
   {
     return $this->belongsToMany(config('entrust.permission'));
+  }
+
+  public function company()
+  {
+    return $this->belongsTo(Company::class);
+  }
+
+    public function costCenter()
+  {
+    return $this->belongsTo(CostCenter::class);
   }
 
   /**
@@ -83,5 +105,15 @@ class User extends Authenticatable implements AuthenticatableUserContract
              ]
         ];
     }
+
+  public function getActiveAttribute()
+  {
+    if ($this->attributes['active'])
+    {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

@@ -21,9 +21,12 @@ class UserTableSeeder extends Seeder
       $admin = User::create([
                   'id' => $faker->uuid,
                   'identification' => '666',
-                  'name' => 'Administrador',
+                  'name' => 'Admin Tunal',
                   'password' => bcrypt('123'),
                   'api_token' => str_random(50),
+                  'payroll_type' => 0,
+                  'company_id' => '1020',
+                  'cost_center_id' => '0',
                 ]);
 
       $admin->attachRole(1);
@@ -35,6 +38,9 @@ class UserTableSeeder extends Seeder
                 'name' => 'Talento Humano',
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
               ]);
 
        $rrhh->attachRole(2);
@@ -52,6 +58,35 @@ class UserTableSeeder extends Seeder
                 'name' => 'Empleado',
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
+              ]);
+
+      $empleado->attachRole(4);
+
+      $empleado = User::create([
+                'id' => $faker->uuid,
+                'identification' => '16866530',
+                'name' => 'Javier Alarcon',
+                'password' => bcrypt('123'),
+                'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
+              ]);
+
+      $empleado->attachRole(4);
+
+      $empleado = User::create([
+                'id' => $faker->uuid,
+                'identification' => '22264602',
+                'name' => 'Oscar Guevara',
+                'password' => bcrypt('123'),
+                'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
               ]);
 
       $empleado->attachRole(4);
@@ -63,6 +98,9 @@ class UserTableSeeder extends Seeder
                 'active' => false,
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
               ]);
 
       $empleadoI->attachRole(4);
@@ -74,6 +112,9 @@ class UserTableSeeder extends Seeder
                 'active' => true,
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
               ]);
 
       $empleado = User::create([
@@ -83,6 +124,9 @@ class UserTableSeeder extends Seeder
                 'active' => true,
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
               ]);
 
       $empleado->delete();

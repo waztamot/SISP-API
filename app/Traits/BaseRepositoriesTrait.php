@@ -97,7 +97,7 @@ trait BaseRepositoriesTrait
   public function create($data)
   {
     //  Result
-    return $this->entity->create($data);
+    return $this->entity->create($data)->makeVisible('id');
   }
 
   /**

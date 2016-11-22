@@ -100,6 +100,7 @@ return [
             //  'command'       => 'Console',
             'event'         => 'Events',
             'listener'      => 'Events/Handlers',
+            'managers'      => 'Managers',
             'migration'     => 'Database/Migrations',
             'model'         => 'Entities',
             'repository'    => 'Repositories',

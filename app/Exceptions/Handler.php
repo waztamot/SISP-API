@@ -3,6 +3,7 @@
 namespace SISP\Exceptions;
 
 use Exception;
+use Log;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -49,6 +50,17 @@ class Handler extends ExceptionHandler
         } else if ($exception instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
             return response()->json(['token_invalid'], $exception->getStatusCode());
         }
+        
+        /*switch ($exception->getStatusCode()) {
+            case 600:
+                Log::info($exception);
+                return response()->json(['result' => false], 200);
+                break;
+            case 601:
+                Log::info($exception);
+                return response()->json(['result' => false, 'message' => $exception->getMessage()], 200);
+                break;
+        }*/
         
         return parent::render($request, $exception);
     }

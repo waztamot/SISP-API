@@ -131,7 +131,7 @@ class RequisitionManager extends BaseManager
                                                 );
         array_push($data, [
           'quantity' => $products[$key_product]['quantity'],
-          'amount' => $products[$key_product]['quantity'] * $combo_detail[0]->product->price->price,
+          'amount' => /*$products[$key_product]['quantity'] **/ $combo_detail[0]->product->price->price,
           'requisition_id' => $requisition->id,
           'product_id' => $products[$key_product]['id'],
           ]);

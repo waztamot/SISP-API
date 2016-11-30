@@ -15,7 +15,7 @@ class CreateProductPricesTable extends Migration
         Schema::create('product_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('company');
-            $table->double('price', 15, 2)->unsigned()->default(0);
+            $table->double('price', 20, 2)->unsigned()->default(0);
             $table->integer('quota', 2)->unsigned()->default(1);
             $table->date('valid_from');
 

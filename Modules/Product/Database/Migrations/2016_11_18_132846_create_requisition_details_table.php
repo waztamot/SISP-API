@@ -15,7 +15,7 @@ class CreateRequisitionDetailsTable extends Migration
         Schema::create('requisition_details', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->integer('quantity')->unsigned()->default(0);
-            $table->float('amount')->unsigned()->default(0);
+            $table->double('amount', 20, 2)->unsigned()->default(0);
 
             $table->string('requisition_id');
             $table->string('product_id');

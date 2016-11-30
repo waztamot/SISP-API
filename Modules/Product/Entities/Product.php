@@ -16,11 +16,14 @@ class Product extends Model
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'name', 'description', 'available', 'image', 
+    'id', 
+    'name',
+    'description',
+    'available',
+    'image', 
   ];
 
   protected $hidden = [
-    'id', 
     'barcode', 
     'product_type_id',
     'created_at', 
@@ -42,7 +45,8 @@ class Product extends Model
 
   public function price() 
   {
-    return $this->hasOne(ProductPrice::class)->where('valid_from','<=', Carbon::now()->format('Y-m-d'));
+    return $this->hasOne(ProductPrice::class)->where('valid_from','<=', Carbon::now()->format('Y-m-d'))
+                                             ->orderBy('valid_from','desc');
   }
 
   public function getAvailableAttribute()

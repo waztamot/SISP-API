@@ -5,11 +5,13 @@ namespace Modules\Product\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Product\Entities\Combo;
+use Modules\Product\Entities\ComboLapse;
 use Modules\Security\Entities\User;
 use SISP\Traits\UuidTrait;
 
 class Requisition extends Model
 {
+  
   use SoftDeletes;
   use UuidTrait;
 
@@ -25,6 +27,7 @@ class Requisition extends Model
     'status',
     'user_id',
     'combo_id',
+    'combo_lapse_id',
   ];
 
   protected $hidden = [
@@ -35,7 +38,7 @@ class Requisition extends Model
     'deleted_at',
   ];
 
-  public function requisitionDetails()
+  public function details()
   {
     return $this->hasMany(RequisitionDetail::class);
   }
@@ -43,6 +46,11 @@ class Requisition extends Model
   public function combo()
   {
     return $this->hasOne(Combo::class);
+  }
+
+  public function comboLapse()
+  {
+    return $this->hasOne(ComboLapse::class);
   }
 
   public function user()

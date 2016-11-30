@@ -7,7 +7,7 @@ use SISP\Contracts\BaseRepositories;
 use SISP\Traits\BaseRepositoriesTrait;
 
 /**
-* 
+*
 */
 class ComboRepository implements BaseRepositories
 {
@@ -21,12 +21,28 @@ class ComboRepository implements BaseRepositories
 
   public function list($company)
   {
-    $list = $this->getActiveWhereWith(array('details', 'subcombo'),
-                                      array(
-                                        ['max_quantity','>','0'],
-                                        ['company','=',$company]
-                                      ))->makeVisible('id');
+    $list = $this->entity->whereHas('lapse', function ($query) {
+                            $query->where(array(['date_start', '<=', date('Y/m/d')], 
+                                                ['date_end', '>=', date('Y/m/d')]));
+                          })
+                         ->with(['details', 'subcombo', 'lapse'])
+                         ->where(array(['max_quantity','>','0'],
+                                       ['company','=',$company]))
+                         ->get()->makeVisible('id');
     return $list;
+  }
+
+  public function find($company, $id)
+  {
+    $combo = $this->entity->whereHas('lapse', function ($query) {
+                            $query->where(array(['date_start', '<=', date('Y/m/d')], 
+                                                ['date_end', '>=', date('Y/m/d')]));
+                          })
+                         ->with(['details', 'subcombo', /*'lapse'*/])
+                         ->where(array(['max_quantity','>','0'],
+                                       ['company','=',$company]))
+                         ->find($id)->makeVisible('id');
+    return $combo;
   }
 
 }

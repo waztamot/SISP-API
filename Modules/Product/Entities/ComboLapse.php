@@ -2,8 +2,10 @@
 
 namespace Modules\Product\Entities;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Product\Entities\Requisition;
 
 class ComboLapse extends Model
 {
@@ -14,10 +16,35 @@ class ComboLapse extends Model
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'id', 'date_start', 'date_end',
+    'id', 
+    'date_start', 
+    'date_end',
   ];
 
   protected $hidden = [
-    'created_at', 'updated_at', 'deleted_at', 'combo_id'
+    'combo_id',
+    'created_at', 
+    'updated_at', 
+    'deleted_at', 
   ];
+
+  public function combo()
+  {
+    return $this->belongsTo(Combo::class);
+  }
+
+  public function requisition() 
+  {
+    return $this->belongsTo(Requisition::class);
+  }
+
+  public function getDateStartAttribute()
+  {
+    return Carbon::parse($this->attributes['date_start'])->format('d-m-Y');
+  }
+
+  public function getDateEndAttribute()
+  {
+    return Carbon::parse($this->attributes['date_end'])->format('d-m-Y');
+  }
 }

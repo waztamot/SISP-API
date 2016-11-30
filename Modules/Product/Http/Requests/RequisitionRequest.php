@@ -16,6 +16,10 @@ class RequisitionRequest extends FormRequest
         return [
             'combo_id' => 'required|exists:combos,id', 
             'type_combo' => 'required|in:Estatico,Dinamico,SubCombo-Estatico,SubCombo-Dinamico',     //Modificar a tabla
+            'products' => 'required',
+            'products.*.id' => 'required|exists:products,id',
+            'products.*.quantity' => 'required',
+            'lapse_id' => 'required|exists:combo_lapses,id',
         ];
     }
 

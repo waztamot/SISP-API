@@ -34,8 +34,8 @@ class ComboLapsesTableSeeder extends Seeder
       $date = $faker->dateTimeBetween('now', '+10 days',date_default_timezone_get());
       ComboLapse::create([
         'id' => $faker->uuid,
-        'date_start' => $date,
-        'date_end' => $faker->dateTimeBetween($date, '+10 days',date_default_timezone_get()),
+        'date_start' => $date->format('Y-m-d'),
+        'date_end' => $faker->dateTimeBetween($date, '+10 days',date_default_timezone_get())->format('Y-m-d'),
         'combo_id' => $value->id,
       ]);
     }

@@ -196,7 +196,8 @@ trait BaseRepositoriesTrait
   public function destroy($id)
   {
     //  Result
-    return $this->entity->destroy($id);
+    $data = $this->entity->find($id);
+    return $data->forceDelete();
   }
 
   /**
@@ -462,6 +463,30 @@ trait BaseRepositoriesTrait
     //  Result
     return $query->get();
   }
+
+  /**
+   * count function - 
+   *
+   * @return  integer
+   * @author  Javier Alarcon
+   **/
+  public function count()
+  {
+    return $this->entity->count();
+  }
+
+  /**
+   * countWhere function - 
+   *
+   * @param   Array condition - array of array [['field','operator','value'],[..],..]
+   * @return  integer
+   * @author  Javier Alarcon
+   **/
+  public function countWhere(array $condition)
+  {
+    return $this->entity->where($condition)->count();
+  }
+
 
   /**
    * Sort data from bd

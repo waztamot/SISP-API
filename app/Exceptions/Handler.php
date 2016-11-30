@@ -49,18 +49,15 @@ class Handler extends ExceptionHandler
             return response()->json(['token_expired'], $exception->getStatusCode());
         } else if ($exception instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
             return response()->json(['token_invalid'], $exception->getStatusCode());
-        }
-        
-        /*switch ($exception->getStatusCode()) {
-            case 600:
-                Log::info($exception);
+        } else if ($exception instanceof SISPException) {
+            if ($exception->getCode() == 600) {
                 return response()->json(['result' => false], 200);
-                break;
-            case 601:
-                Log::info($exception);
+            } else if ($exception->getCode() == 601) {
                 return response()->json(['result' => false, 'message' => $exception->getMessage()], 200);
-                break;
-        }*/
+            } else {
+                return response()->json(['message' => $exception->getMessage()], 200);
+            }
+        }
         
         return parent::render($request, $exception);
     }

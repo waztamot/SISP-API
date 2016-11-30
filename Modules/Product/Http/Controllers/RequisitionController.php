@@ -18,7 +18,7 @@ class RequisitionController extends Controller
   public function __construct(RequisitionRepository $requisitionRepo) 
   {
     $this->requisitionRepo = $requisitionRepo;
-    // $this->middleware('jwt.auth', ['except' => 'login'] s);
+    $this->middleware('jwt.auth', ['except' => 'login']);
   }
 
   /**
@@ -50,9 +50,8 @@ class RequisitionController extends Controller
    * Show the form for editing the specified resource.
    * @return Response
    */
-  public function edit()
+  public function show($id)
   {
-    return view('product::edit');
   }
 
   /**
@@ -68,7 +67,11 @@ class RequisitionController extends Controller
    * Remove the specified resource from storage.
    * @return Response
    */
-  public function destroy()
+  public function delete($id)
   {
+    if (!$this->requisitionRepo->destroy($id)) {
+      throw new SISPException('No se pudo eliminar el pedido', 601);
+    }
+    return response()->json(['result' => true], 200);
   }
 }

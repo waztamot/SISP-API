@@ -12,7 +12,8 @@ Route::group(['prefix' => 'product', 'namespace' => 'Product\Http\Controllers'],
 
     Route::group(['prefix'=> 'individual',], function () {
       Route::post('/', 'RequisitionController@store');         //  Store
-      Route::put('/update/{id}', 'RequisitionController@update');
+      // Route::put('/{id}', 'RequisitionController@update');
+      Route::delete('/{id}', 'RequisitionController@delete');
       Route::post('/list', 'RequisitionController@list');     //  List
     });
     Route::group(['prefix'=> 'group',], function () {

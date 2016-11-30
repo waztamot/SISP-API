@@ -18,4 +18,18 @@ class RequisitionDetailRepository implements BaseRepositories
   {
     return new RequisitionDetail;
   }
+
+  /**
+   * Create a new object of the entity that will manage repositories.
+   *
+   * @param   Object data - Data of the entity.
+   * @return  void.
+   * @author  Javier Alarcón.
+   **/
+  public function create ($data) {
+    foreach ($data as $value) {
+      $this->entity->create($value);
+    }
+  }
+
 }

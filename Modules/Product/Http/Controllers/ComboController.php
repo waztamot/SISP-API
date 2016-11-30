@@ -5,17 +5,14 @@ namespace Modules\Product\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Modules\Product\Managers\ComboManager;
 use SISP\Http\Controllers\Controller;
-use Modules\Product\Repositories\ComboRepository;
 
 class ComboController extends Controller
 {
-  protected $comboRepo;
 
-  public function __construct(ComboRepository $comboRepo) 
+  public function __construct() 
   {
-    $this->comboRepo = $comboRepo;
     $this->middleware('jwt.auth', ['except' => 'login'] );
   }
 
@@ -25,25 +22,17 @@ class ComboController extends Controller
    */
   public function getListCombo()
   {
-    $user = Auth::user();
+    $user = auth()->user();
 
     if ($user->hasRole(['admin','empleado']) || $user->can('product.request')) {
 
-      $combo_list = $this->comboRepo->list($user->company_id);
+      $comboManager = new ComboManager();
+      $comboManager->init(['data' => [], 'user' => $user]);
 
-      foreach ($combo_list as $key_combo => $value_combo) {
+      $combos = $comboManager->constructorMany();
+      $combos = $comboManager->addRequisition($combos);
 
-        $combo_list[$key_combo]['buy'] = false;               //  Crear Busqueda
-
-        if ($value_combo->type === 'SubCombo') {
-          unset($combo_list[$key_combo]['details']);
-          $combo_list[$key_combo]['details'] = $value_combo->subcombo;
-        }
-
-        unset($combo_list[$key_combo]['subcombo']);
-
-      }
-      return response()->json(['data' => $combo_list], 200);
+      return response()->json(['data' => $combos], 200);
     } else {
       return response()->json(['error' => trans('validation.custom.access.denied')], 200);
     }

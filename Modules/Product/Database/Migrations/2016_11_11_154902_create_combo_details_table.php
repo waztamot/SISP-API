@@ -1,8 +1,18 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-11 11:49:02
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-21 14:59:42
+ */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class of type Migration by table ComboDetail
+ * @author Javier Alarcon
+ */
 class CreateComboDetailsTable extends Migration
 {
     /**

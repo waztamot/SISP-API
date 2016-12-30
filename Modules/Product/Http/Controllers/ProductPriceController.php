@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-10 14:12:30
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-23 14:23:25
+ */
 
 namespace Modules\Product\Http\Controllers;
 
@@ -6,8 +12,23 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use SISP\Http\Controllers\Controller;
 
+/**
+ * Class of type Controller by table ProductPrice
+ * @author Javier Alarcon
+ */
 class ProductPriceController extends Controller
 {
+    /**
+     * construct function - constructor of the class
+     *
+     * @return void
+     * @author Javier Alarcon
+     */
+    public function __construct() 
+    {
+        $this->middleware('jwt.auth');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response

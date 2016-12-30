@@ -1,4 +1,11 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-14 11:35:53
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-30 11:07:54
+ */
+
 
 namespace Modules\Product\Database\Seeders;
 
@@ -9,11 +16,27 @@ use Illuminate\Database\Seeder;
 use Modules\Product\Entities\ComboLapse;
 use Modules\Product\Repositories\ComboRepository;
 
+/**
+ * Class of type Seeder by table Combo lapse
+ * @author Francisco Mendoza
+ */
 class ComboLapsesTableSeeder extends Seeder
 {
 
+  /**
+   * protected class variable
+   *
+   * @var comboRepo    - combo repository conection BD
+  **/
   protected $comboRepo;
 
+  /**
+   * construct function - constructor of the class
+   *
+   * @param  ComboRepository comboRepo injection of dependency
+   * @return void
+   * @author Francisco Mendoza
+   **/
   public function __construct(ComboRepository $comboRepo) 
   {
       $this->comboRepo = $comboRepo;

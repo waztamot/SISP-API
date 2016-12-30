@@ -1,8 +1,18 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-10 10:04:55
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-29 15:54:40
+ */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class of type Migration by table Products
+ * @author Javier Alarcon
+ */
 class CreateProductsTable extends Migration
 {
     /**

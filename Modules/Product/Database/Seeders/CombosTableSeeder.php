@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-11 08:49:04
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-22 10:36:30
+ */
 
 namespace Modules\Product\Database\Seeders;
 
@@ -9,12 +15,27 @@ use Modules\Product\Entities\Combo;
 use Modules\Product\Entities\ComboDetail;
 use Modules\Product\Repositories\ProductRepository;
 
+/**
+ * Class of type Seeder by table Combo
+ * @author Javier Alarcon
+ */
 class CombosTableSeeder extends Seeder
 {
 
-
+    /**
+     * protected class variable
+     *
+     * @var productsRepo    - product repository conection BD
+    **/
     protected $productsRepo;
 
+    /**
+     * construct function - constructor of the class
+     *
+     * @param  productRepository productRepo injection of dependency
+     * @return void
+     * @author Javier Alarcon
+     **/
     public function __construct(ProductRepository $productsRepo) 
     {
         $this->productsRepo = $productsRepo;
@@ -84,7 +105,7 @@ class CombosTableSeeder extends Seeder
                             'company' => '1020',
                             'name' => 'Combo Embutidos',
                             'max_quantity' => 1,
-                            'type' => 'SubCombo',          // Verificar
+                            'type' => 'SubCombo-Estatico',          // Verificar
                         ]);
 
         $combo_embut1 = Combo::create([

@@ -19,6 +19,7 @@ class CreateRequisitionDetailsTable extends Migration
 
             $table->string('requisition_id');
             $table->string('product_id');
+            $table->string('combo_id');
 
             $table->timestamps();
             // $table->softDeletes();
@@ -26,6 +27,8 @@ class CreateRequisitionDetailsTable extends Migration
             $table->foreign('requisition_id')->references('id')->on('requisitions')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('combo_id')->references('id')->on('combos')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

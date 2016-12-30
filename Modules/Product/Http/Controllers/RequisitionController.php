@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Modules\Product\Http\Requests\RequisitionRequest;
 use Modules\Product\Managers\RequisitionManager;
 use Modules\Product\Repositories\RequisitionRepository;
+use Modules\Product\Repositories\StaffRepository;
 use SISP\Http\Controllers\Controller;
 use SISP\Utils\Helpers;
 
@@ -14,11 +15,14 @@ class RequisitionController extends Controller
 {
   
   protected $requisitionRepo;
+  protected $staffRepo;
+  protected $requisitionManager;
 
-  public function __construct(RequisitionRepository $requisitionRepo) 
+  public function __construct(RequisitionRepository $requisitionRepo, StaffRepository $staffRepo) 
   {
     $this->requisitionRepo = $requisitionRepo;
-    $this->middleware('jwt.auth', ['except' => 'login']);
+    $this->staffRepo = $staffRepo;
+    $this->middleware('jwt.auth');
   }
 
   /**

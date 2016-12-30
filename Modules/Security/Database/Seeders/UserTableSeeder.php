@@ -91,6 +91,19 @@ class UserTableSeeder extends Seeder
 
       $empleado->attachRole(4);
 
+      $empleado = User::create([
+                'id' => $faker->uuid,
+                'identification' => '24201843',
+                'name' => 'Francisco Mendoza',
+                'password' => bcrypt('123'),
+                'api_token' => str_random(50),
+                'payroll_type' => 14,
+                'company_id' => '1020',
+                'cost_center_id' => 'A210000200',
+              ]);
+
+      $empleado->attachRole(4);
+
       $empleadoI = User::create([
                 'id' => $faker->uuid,
                 'identification' => '111',
@@ -120,7 +133,7 @@ class UserTableSeeder extends Seeder
       $empleado = User::create([
                 'id' => $faker->uuid,
                 'identification' => '001',
-                'name' => 'Empleado Sin Permisos',
+                'name' => 'Empleado Eliminado',
                 'active' => true,
                 'password' => bcrypt('123'),
                 'api_token' => str_random(50),

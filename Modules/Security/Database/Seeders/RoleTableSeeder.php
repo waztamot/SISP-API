@@ -22,7 +22,7 @@ class RoleTableSeeder extends Seeder
                 'display_name' => 'Administrador',
                 'description' => 'Todopoderoso',
               ]);
-      for ($i=1; $i <= 23; $i++) { 
+      for ($i=1; $i <= 24; $i++) { 
         $admin->attachPermission($i);
       }
 
@@ -39,6 +39,7 @@ class RoleTableSeeder extends Seeder
       $rrhh->attachPermission(20);
       $rrhh->attachPermission(21);
       $rrhh->attachPermission(22);
+      $rrhh->attachPermission(23);
 
       $supervisor = Role::create([
                 'name' => 'superv',

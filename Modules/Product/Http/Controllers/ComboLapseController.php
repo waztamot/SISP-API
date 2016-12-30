@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-14 11:36:23
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-30 11:43:22
+ */
 
 namespace Modules\Product\Http\Controllers;
 
@@ -8,6 +14,17 @@ use SISP\Http\Controllers\Controller;
 
 class ComboLapseController extends Controller
 {
+    /**
+     * construct function - constructor of the class
+     *
+     * @return void
+     * @author Javier Alarcon
+     */
+    public function __construct() 
+    {
+        $this->middleware('jwt.auth');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response

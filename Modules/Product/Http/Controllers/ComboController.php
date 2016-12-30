@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-11 08:35:44
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-23 14:18:51
+ */
 
 namespace Modules\Product\Http\Controllers;
 
@@ -8,12 +14,22 @@ use Illuminate\Http\Response;
 use Modules\Product\Managers\ComboManager;
 use SISP\Http\Controllers\Controller;
 
+/**
+ * Class of type Controller by table Combo
+ * @author Javier Alarcon
+ */
 class ComboController extends Controller
 {
 
+  /**
+   * construct function - constructor of the class
+   *
+   * @return void
+   * @author Javier Alarcon
+   */
   public function __construct() 
   {
-    $this->middleware('jwt.auth', ['except' => 'login'] );
+    $this->middleware('jwt.auth');
   }
 
   /**

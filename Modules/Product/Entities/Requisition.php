@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Product\Entities\Combo;
 use Modules\Product\Entities\ComboLapse;
+use Modules\Security\Entities\Staff;
 use Modules\Security\Entities\User;
 use SISP\Traits\UuidTrait;
 
@@ -45,22 +46,22 @@ class Requisition extends Model
 
   public function combo()
   {
-    return $this->hasOne(Combo::class);
+    return $this->belongsTo(Combo::class);
   }
 
   public function comboLapse()
   {
-    return $this->hasOne(ComboLapse::class);
+    return $this->belongsTo(ComboLapse::class);
   }
 
   public function user()
   {
-    return $this->hasOne(User::class);
+    return $this->belongsTo(User::class);
   }
 
   public function employee()
   {
-    return $this->hasOne(Staff::class, 'identification', 'cedula');
+    return $this->hasOne(Staff::class, 'cedula', 'identification');
   }
 
 }

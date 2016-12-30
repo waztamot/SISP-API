@@ -1,14 +1,23 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-10 10:07:28
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-22 11:19:51
+ */
 
 namespace Modules\Product\Database\Seeders;
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-
 use Modules\Product\Entities\Product;
 use Modules\Product\Entities\ProductPrice;
 
+/**
+ * Class of type Seeder by table Product
+ * @author Javier Alarcon
+ */
 class ProductTableSeeder extends Seeder
 {
     /**
@@ -31,7 +40,7 @@ class ProductTableSeeder extends Seeder
                     ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -47,7 +56,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -63,7 +72,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -79,7 +88,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -88,14 +97,14 @@ class ProductTableSeeder extends Seeder
         $product = Product::create([
             'id' => $faker->uuid,
             'barcode' => $faker->ean13,
-            'name' => 'Leche Descremda y Deslactosada',
+            'name' => 'Leche Descremada y Deslactosada',
             'description' => 'Leche Descremda y Deslactosada Hacienda UHT',
             'image' => 'leche_descremada_deslactosada.png',
             'product_type_id' => 1,
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -110,7 +119,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -126,7 +135,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -142,7 +151,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -158,7 +167,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -174,7 +183,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -190,7 +199,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -206,7 +215,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,
@@ -222,7 +231,7 @@ class ProductTableSeeder extends Seeder
         ]);
 
         ProductPrice::create([
-            'company' => '1001',
+            'company' => '1020',
             'price' => $faker->randomFloat(2,0,999999), 
             'valid_from' => $faker->dateTimeBetween('-12 month', 'now', date_default_timezone_get())->format('Y-m-d'),
             'product_id' => $product->id,

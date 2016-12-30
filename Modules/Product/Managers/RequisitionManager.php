@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-21 10:37:06
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-11-30 11:19:58
+ * @Last Modified time: 2016-12-23 11:23:37
  */
 
 namespace Modules\Product\Managers;
@@ -43,12 +43,13 @@ class RequisitionManager extends BaseManager
    **/
   public function __construct()
   {
+    $this->requisitionRepo = new RequisitionRepository();
+    parent::__construct($this->requisitionRepo);
+
     $this->comboRepo = new ComboRepository();
     $this->comboDetailRepo = new ComboDetailRepository();
-    $this->requisitionRepo = new RequisitionRepository();
     $this->requisitionDetailRepo = new RequisitionDetailRepository();
     $this->comboManager = new ComboManager();
-    parent::__construct($this->requisitionRepo);
   }
 
   /**
@@ -61,6 +62,7 @@ class RequisitionManager extends BaseManager
   {
     parent::init($data);
     $this->user = $data['user'];
+    
     $this->comboManager->init($data);
   }
 
@@ -121,19 +123,32 @@ class RequisitionManager extends BaseManager
   private function prepareDetailData($requisition) {
     //  Variable declaration|initialization
     $data =  array();
+    $combo_id = null;
+    $combo_child_id = $this->data->get('combo_child_id');
+    $type_combo = $this->data->get('type_combo');
 
     //  Process
     if ($products = $this->data->get('products')) {
       foreach ($products as $key_product => $value_product) {
-        $combo_detail = $this->comboDetailRepo
-                                ->getActiveWhere(array (['combo_id', '=', $requisition->combo_id],
-                                                        ['product_id', '=', $products[$key_product]['id']])
-                                                );
+        if ($type_combo == 'Estatico' or $type_combo == 'Dinamico') {
+          $combo_detail = $this->comboDetailRepo
+                                  ->getActiveWhere(array (['combo_id', '=', $requisition->combo_id],
+                                                          ['product_id', '=', $products[$key_product]['id']])
+                                                  );
+          $combo_id = $requisition->combo_id;
+        } else {
+          $combo_detail = $this->comboDetailRepo
+                                  ->getActiveWhere(array (['combo_id', '=', $combo_child_id],
+                                                          ['product_id', '=', $products[$key_product]['id']])
+                                                  );
+           $combo_id = $combo_child_id;
+        }
         array_push($data, [
           'quantity' => $products[$key_product]['quantity'],
           'amount' => /*$products[$key_product]['quantity'] **/ $combo_detail[0]->product->price->price,
           'requisition_id' => $requisition->id,
           'product_id' => $products[$key_product]['id'],
+          'combo_id' => $combo_id, 
           ]);
       }
     } else {
@@ -161,7 +176,7 @@ class RequisitionManager extends BaseManager
     //  Process
     if ($products = $this->data->get('products')) {
       if ($combo = $this->comboManager->constructorOne($combo_id)) {
-        if ($combo->type == 'Estatico' or $combo->type == 'SubCombo-Estatico') {
+        if ($combo->type == 'Estatico') {
           foreach ($products as $key_product => $value_product) {
             foreach ($combo->details as $key_detail => $value_detail) {
               if ($value_product['id'] == $value_detail->product->id && 
@@ -170,12 +185,25 @@ class RequisitionManager extends BaseManager
               }
             }
           }
-        } else {
+        }
+        if ($combo->type == 'Dinamico') {
           foreach ($products as $key_product => $value_product) {
             $quantity_total += $value_product['quantity'];
           }
           if ($quantity_total > $combo->max_quantity) {
             throw new SISPException("La cantidad de los productos solicitados no es correcta", 601);
+          }
+        }
+        if ($combo->type == 'SubCombo-Estatico') {
+          foreach ($products as $key_product => $value_product) {
+            foreach ($combo->details as $key_subcombo_detail => $value_subcombo_detail) {
+              foreach ($value_subcombo_detail->details as $key_detail => $value_detail) {
+                if ($value_product['id'] == $value_detail->product->id && 
+                    $value_product['quantity'] != $value_detail->quantity) {
+                  throw new SISPException("La cantidad de los productos solicitados no es correcta", 601);
+                }
+              }
+            }
           }
         }
       } else {

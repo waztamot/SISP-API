@@ -3,6 +3,7 @@
 namespace Modules\Product\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Product\Entities\Product;
 use Modules\Product\Entities\Requisition;
 use SISP\Traits\UuidTrait;
 
@@ -20,6 +21,7 @@ class RequisitionDetail extends Model
     'amount',
     'requisition_id',
     'product_id',
+    'combo_id'
   ];
 
   protected $hidden = [
@@ -28,13 +30,15 @@ class RequisitionDetail extends Model
     'updated_at', 
   ];
 
+  // protected $with = ['product'];
+
   public function requisition()
   {
-    return $this->belognsTo(Requisition::class);
+    return $this->belongsTo(Requisition::class);
   }
 
   public function product()
   {
-    return $this->belognsTo(Product::class);
+    return $this->belongsTo(Product::class);
   }
 }

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: Javier Alarcon
+ * @Date:   2016-11-08 11:38:16
+ * @Last Modified by:   Javier Alarcon
+ * @Last Modified time: 2016-12-21 14:50:19
+ */
 
 namespace Modules\Product\Database\Seeders;
 
@@ -6,6 +12,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Modules\Product\Entities\ProductType;
 
+/**
+ * Class of type Seeder by table ProductType
+ * @author Javier Alarcon
+ */
 class ProductTypeTableSeeder extends Seeder
 {
     /**

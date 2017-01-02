@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-14 11:36:23
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-30 11:43:22
+ * @Last Modified time: 2017-01-02 07:49:21
  */
 
 namespace Modules\Product\Http\Controllers;
@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use SISP\Http\Controllers\Controller;
 
+/**
+ * Class of type Controller by table Combo Lapse
+ * @author Francisco Mendoza
+ */
 class ComboLapseController extends Controller
 {
     /**

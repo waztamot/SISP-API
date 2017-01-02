@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-14 11:35:53
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-30 11:07:54
+ * @Last Modified time: 2017-01-02 10:06:19
  */
 
 
@@ -54,10 +54,10 @@ class ComboLapsesTableSeeder extends Seeder
     $combos = $this->comboRepo->allActive();
 
     foreach ($combos as $key => $value) {
-      $date = $faker->dateTimeBetween('now', '+10 days',date_default_timezone_get());
+      $date = date('Y-m-d'); 
       ComboLapse::create([
         'id' => $faker->uuid,
-        'date_start' => $date->format('Y-m-d'),
+        'date_start' => $date,
         'date_end' => $faker->dateTimeBetween($date, '+10 days',date_default_timezone_get())->format('Y-m-d'),
         'combo_id' => $value->id,
       ]);

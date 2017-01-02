@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-11 08:35:44
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-23 14:18:51
+ * @Last Modified time: 2017-01-02 08:23:00
  */
 
 namespace Modules\Product\Http\Controllers;

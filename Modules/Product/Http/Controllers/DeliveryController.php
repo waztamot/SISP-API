@@ -42,7 +42,7 @@ class DeliveryController extends Controller
     
     $employee = $this->staffRepo->find($identification);
     $combos = $deliveryManager->getCombos($employee);
-    $requisitions = $deliveryManager->getRequisitions($employee->identification);
+    $requisitions = $deliveryManager->countDeliveryAvailable($employee->identification);
     
     return response()->json(['result' => true, 'employee' => $employee, 'requisitions' => $requisitions, 'combos' => $combos], 200);
   }
@@ -54,7 +54,14 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        
+      $user = auth()->user();
+      // $identification = $request->get('identification');
+
+      $deliveryManager = new DeliveryManager();
+      $deliveryManager->init(['data' => $request, 'user' => $user]);
+      $result = $deliveryManager->store();
+
+      return response()->json($result, 200);
     }
 
     /**

@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-10-31 18:51:48
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-21 11:38:24
+ * @Last Modified time: 2017-01-03 14:53:59
  */
 
 Route::group(['prefix' => 'product', 'namespace' => 'Product\Http\Controllers'], function()
@@ -34,7 +34,15 @@ Route::group(['prefix' => 'product', 'namespace' => 'Product\Http\Controllers'],
   });
 
   Route::group(['prefix' => 'delivery',], function () {
-    Route::post('/requisitions', 'DeliveryController@getRequisitions');
+    
+    Route::group(['prefix'=> 'individual',], function () {
+      Route::post('/requisitions', 'DeliveryController@getRequisitions');
+      Route::post('/', 'DeliveryController@store');                       //  store - Insert
+    });
+
+    Route::group(['prefix'=> 'group',], function () {
+      
+    });
   });
 
 });

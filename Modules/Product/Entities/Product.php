@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-10 10:07:10
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-23 15:15:34
+ * @Last Modified time: 2017-01-03 11:47:10
  */
 
 namespace Modules\Product\Entities;
@@ -164,6 +164,17 @@ class Product extends Model
   {
     return $this->hasOne(ProductPrice::class)->where('valid_from', '<=', Carbon::now()->format('Y-m-d'))
                                              ->orderBy('valid_from', 'desc');
+  }
+
+  /**
+   * deliveryDetail function - relationship with delivery_detail table
+   *
+   * @return DileveryDetail
+   * @author Francisco Mendoza
+   **/
+   public function deliveryDetail()
+  {
+    return $this->hasOne(DeliveryDetail::class);
   }
 
   /**

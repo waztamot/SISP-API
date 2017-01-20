@@ -16,13 +16,13 @@ class CreateRequisitionDetailsTable extends Migration
             $table->string('id')->primary();
             $table->integer('quantity')->unsigned()->default(0);
             $table->double('amount', 20, 2)->unsigned()->default(0);
+            $table->string('unity')->default('Unidad');
 
             $table->string('requisition_id');
             $table->string('product_id');
             $table->string('combo_id');
 
             $table->timestamps();
-            // $table->softDeletes();
 
             $table->foreign('requisition_id')->references('id')->on('requisitions')
                 ->onUpdate('cascade')->onDelete('cascade');

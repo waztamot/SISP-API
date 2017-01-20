@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-12-05 15:43:47
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-29 09:30:55
+ * @Last Modified time: 2017-01-03 15:33:22
  */
 
 use Illuminate\Database\Schema\Blueprint;
@@ -13,7 +13,7 @@ use Illuminate\Database\Migrations\Migration;
  * Class of type Migration by table Products
  * @author Javier Alarcon
  */
-class CreateDeliveryTable extends Migration
+class CreateDeliveriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,9 +22,10 @@ class CreateDeliveryTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery', function (Blueprint $table) {
+        Schema::create('deliveries', function (Blueprint $table) {
             $table->string('id')->unique();
             $table->string('identification');
+            $table->string('status')->default('Total');         //  (Parcial | Total)
 
             $table->string('requisition_id');
             $table->string('user_id');
@@ -48,6 +49,6 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery');
+        Schema::dropIfExists('deliveries');
     }
 }

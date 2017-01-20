@@ -31,8 +31,23 @@ class Requisition extends Model
     'combo_lapse_id',
   ];
 
-  protected $hidden = [
+  protected $visible = [
     'id',
+    'identification',
+    'date_requesition',
+    'status',
+    'user_id',
+    'combo_id',
+    'combo_lapse_id',
+    'details',
+    'combo',
+    'comboLapse',
+    'user',
+    'employee',
+    'deliveries'
+  ];
+
+  protected $hidden = [
     'comment',
     'created_at',
     'updated_at', 
@@ -64,4 +79,8 @@ class Requisition extends Model
     return $this->hasOne(Staff::class, 'cedula', 'identification');
   }
 
+  public function deliveries()
+  {
+    return $this->hasMany(Delivery::class);
+  }
 }

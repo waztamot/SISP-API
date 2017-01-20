@@ -19,6 +19,7 @@ class RequisitionDetail extends Model
   protected $fillable = [
     'quantity',
     'amount',
+    'unity',
     'requisition_id',
     'product_id',
     'combo_id'
@@ -40,5 +41,10 @@ class RequisitionDetail extends Model
   public function product()
   {
     return $this->belongsTo(Product::class);
+  }
+
+  public function combo()
+  {
+    return $this->belongsTo(Combo::class);
   }
 }

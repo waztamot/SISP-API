@@ -3,13 +3,14 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-21 10:02:53
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-11-29 14:36:05
+ * @Last Modified time: 2017-01-03 15:29:03
  */
 
 namespace SISP\Managers;
 
-use Illuminate\Database\QueryException;
 use DB;
+use Illuminate\Database\QueryException;
+use SISP\Exceptions\SISPException;
 
 /**
 * Parent abstract class for data handling
@@ -82,11 +83,11 @@ abstract class BaseManager
         $result = ['result' => true, 'data' => $data];
       } catch (QueryException $e) {
         DB::rollBack();
-        abort(601, 'Los datos no fueron almacenados en la BD');
+        throw new SISPException('Los datos no fueron almacenados en la BD', 601);
       }
     } else {
       DB::rollBack();
-      abort(601, 'Los datos suministrados son incompletos');
+      throw new SISPException('Los datos suministrados son incompletos', 601);
     }
     DB::commit();
 

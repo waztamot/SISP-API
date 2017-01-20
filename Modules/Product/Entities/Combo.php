@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-11 08:36:35
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-29 14:28:58
+ * @Last Modified time: 2017-01-03 14:01:11
  */
 
 namespace Modules\Product\Entities;
@@ -88,7 +88,8 @@ class Combo extends Model
     'details',
     'subcombo',
     'lapse',
-    'quantity'
+    'quantity',
+    'deliveryDetail'
   ];
 
   /**
@@ -161,4 +162,14 @@ class Combo extends Model
     return $this->hasOne(ComboLapse::class);
   }
 
+  /**
+   * deliverydetail function - relationship with Requisition table
+   *
+   * @return deliverydetail
+   * @author Francisco Mendoza
+   **/
+  public function deliveryDetail()
+  {
+    return $this->belongsTo(DeliveryDetail::class);
+  }
 }

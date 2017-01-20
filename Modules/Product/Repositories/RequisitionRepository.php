@@ -42,9 +42,28 @@ class RequisitionRepository implements BaseRepositories
    **/
   public function getRequisitionsByIdentification($identification)
   {
-    return $this->getActiveWhereWith(array('details', 'combo', 'combo.details'), 
+    return $this->getActiveWhereWith(array('details', 'details.product', 'details.combo', 'combo', 'combo.details',), 
                                      array(['identification', '=', $identification],
-                                           ['status', '=', 'Solicitado']))->makeVisible('id');
+                                           ['status', '=', 'Solicitado']));
+  }
+
+  /**
+   * undocumented function
+   *
+   * @return void
+   * @author 
+   **/
+  public function updateStatus($id, $status)
+  {
+    $requisition = $this->find($id);
+    $requisition->status = $status;
+    
+    if ($requisition->save()) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 }

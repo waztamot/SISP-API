@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-11 13:34:54
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-22 15:44:51
+ * @Last Modified time: 2017-01-03 09:23:19
  */
 
 namespace Modules\Product\Repositories;
@@ -73,7 +73,7 @@ class ComboRepository implements BaseRepositories
                          ->with(['details', 'subcombo', /*'lapse'*/])
                          ->where(array(['max_quantity','>','0'],
                                        ['company','=',$company]))
-                         ->find($id)/*->makeVisible('id')*/;
+                         ->find($id);
     return $combo;
   }
 

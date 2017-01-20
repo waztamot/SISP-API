@@ -4,6 +4,7 @@ namespace Modules\Security\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Product\Entities\Delivery;
 
 class Staff extends Model
 {
@@ -21,6 +22,7 @@ class Staff extends Model
     'employment',
     'company',
     'cost_center',
+    'deliveries'
   ];
 
   protected $hidden = [
@@ -56,6 +58,11 @@ class Staff extends Model
     'company',
     'cost_center',
   ];
+
+ public function deliveries()
+  {
+    return $this->hasMany(Delivery::class, 'identification', 'cedula');
+  }
 
   public function company()
   {
@@ -159,4 +166,6 @@ class Staff extends Model
   {
     return ucwords(strtolower($this->attributes['cecodescri']));
   }
+
+
 }

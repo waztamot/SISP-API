@@ -511,4 +511,51 @@ trait BaseRepositoriesTrait
     return $sql;
   }
 
-}
+  /**
+   * Get list of all objects of an entity with condition and relationship.
+   *
+   * @param   name table column.
+   * @param   values SQL - table condition
+   * @param   Array orderBy (optional) - associative array ['field' => 'sort', ..]
+   * @return  ListObjects - Result of SQL WhereIn
+   * @author  Francisco Mendoza
+   **/
+  public function getWhereIn($column, $values, array $orderBy = null)
+  {
+    //  Variable initialization
+    $query =  $this->entity->whereIn($column, $values);
+
+    //  Process
+    if ($orderBy !== null) {
+      $query = $this->orderBy($query, $orderBy);
+    }
+
+    //  Result
+    return $query->get();
+  }
+
+
+  /**
+   * Get list of all objects of an entity with condition and relationship.
+   *
+   * @param   name table column.
+   * @param   values SQL - table condition
+   * @param   Array relationship - array of table relationship ['relationship', ..] 
+   * @param   Array orderBy (optional) - associative array ['field' => 'sort', ..]
+   * @return  ListObjects - Result of SQL WhereIn
+   * @author  Francisco Mendoza
+   **/
+  public function getWithWhereIn($column, $values, array $relationship, array $orderBy = null)
+  {
+    //  Variable initialization
+    $query =  $this->entity->With($relationship)->whereIn($column, $values);
+
+    //  Process
+    if ($orderBy !== null) {
+      $query = $this->orderBy($query, $orderBy);
+    }
+
+    //  Result
+    return $query->get();
+  }
+}   // End of main method  

@@ -3,7 +3,7 @@
  * @Author: Javier Alarcon
  * @Date:   2016-11-21 10:37:06
  * @Last Modified by:   Javier Alarcon
- * @Last Modified time: 2016-12-23 11:23:37
+ * @Last Modified time: 2017-01-10 14:13:54
  */
 
 namespace Modules\Product\Managers;
@@ -145,7 +145,8 @@ class RequisitionManager extends BaseManager
         }
         array_push($data, [
           'quantity' => $products[$key_product]['quantity'],
-          'amount' => /*$products[$key_product]['quantity'] **/ $combo_detail[0]->product->price->price,
+          'amount' => $combo_detail[0]->product->price->price,
+          'unity' => $products[$key_product]['unity'],
           'requisition_id' => $requisition->id,
           'product_id' => $products[$key_product]['id'],
           'combo_id' => $combo_id, 

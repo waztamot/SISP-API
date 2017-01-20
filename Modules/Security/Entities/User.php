@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use InvalidArgumentException;
+use Modules\Product\Entities\Delivery;
 use Modules\Product\Entities\Requisition;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Tymon\JWTAuth\Contracts\JWTSubject as AuthenticatableUserContract;
@@ -80,6 +81,11 @@ class User extends Authenticatable implements AuthenticatableUserContract
   public function requisitions()
   {
     return $this->hasMany(Requisition::class);
+  }
+
+    public function deliveries()
+  {
+    return $this->hasMany(Delivery::class);
   }
 
   /**
